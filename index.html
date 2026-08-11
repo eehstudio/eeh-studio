@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSES Grocery Store — EEH STUDIO</title>
+<style>html,body{margin:0;height:100%;font-family:Arial,'Malgun Gothic',sans-serif;background:#fff;color:#111}.loading{height:100%;display:grid;place-items:center}.box{text-align:center}.dot{width:10px;height:10px;border-radius:50%;background:#279E4C;margin:0 auto 14px;animation:p 1s infinite alternate}@keyframes p{to{transform:scale(1.8);opacity:.35}}</style>
+</head>
+<body><div class="loading"><div class="box"><div class="dot"></div><b>CSES Grocery Store</b><div style="margin-top:8px;font-size:12px;opacity:.55">프로젝트 페이지를 불러오는 중입니다.</div></div></div>
+<script>
+(async()=>{
+  const files=['bundle.part01.txt','bundle.part02.txt','bundle.part03.txt','bundle.part04.txt','bundle.part05.txt','bundle.part06.txt','bundle.part07.txt','bundle.part08.txt','bundle.part09.txt'];
+  try{
+    const chunks=await Promise.all(files.map(f=>fetch(f).then(r=>{if(!r.ok)throw new Error(f);return r.text()})));
+    const b64=chunks.join('').replace(/\s+/g,'');
+    const bin=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
+    if(!('DecompressionStream' in window)) throw new Error('decompression-not-supported');
+    const stream=new Blob([bin]).stream().pipeThrough(new DecompressionStream('gzip'));
+    const html=await new Response(stream).text();
+    document.open();document.write(html);document.close();
+  }catch(e){
+    document.body.innerHTML='<div style="padding:40px;font-family:Arial,Malgun Gothic,sans-serif"><h2>페이지를 불러오지 못했습니다.</h2><p>Chrome 또는 Edge 최신 버전에서 다시 열어주세요.</p></div>';
+    console.error(e);
+  }
+})();
+</script></body></html>
