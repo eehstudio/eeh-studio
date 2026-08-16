@@ -460,7 +460,7 @@
   .bb-awning i{flex:1;background:#279E4C}
   .bb-awning i:nth-child(2n){background:#fff}
   /* 우측벽 — 패널 2칸 (뒤쪽부터), 좌측은 완전 오픈 */
-  .face-right{width:220px;height:238px;left:220px;top:34px;transform:translateZ(-55px) rotateY(90deg);background:#F9F8F3;border:2px solid #111;
+  .face-right{width:220px;height:238px;left:220px;top:34px;transform:translateZ(-55px) rotateY(-90deg);background:#F9F8F3;border:2px solid #111;
     background-image:linear-gradient(90deg,transparent 0 108px,#111 108px 111px,transparent 111px)}
   .wall-poster{position:absolute;left:50%;top:56px;transform:translateX(-50%);border:2px solid #111;background:#279E4C;
     color:#fff;font-family:var(--big);font-weight:800;font-size:12px;text-align:center;padding:10px 14px;line-height:1.4}
@@ -469,7 +469,7 @@
     font-size:12.5px;display:flex;align-items:center;justify-content:center;letter-spacing:.04em}
   .fascia-f{width:330px;left:0;top:0;transform:translateZ(165px)}
   .fascia-l{width:330px;left:-165px;top:0;transform:rotateY(90deg)}
-  .fascia-r{width:330px;left:165px;top:0;transform:rotateY(90deg)}
+  .fascia-r{width:330px;left:165px;top:0;transform:rotateY(-90deg)}
   /* 포스트 40×40×2480 — 4개 */
   .bpost{position:absolute;width:9px;height:272px;background:#fff;border:2px solid #111;top:0}
   .bp1{left:-4px;transform:translateZ(165px)}
@@ -481,19 +481,57 @@
     display:flex;align-items:center;justify-content:center;font-family:var(--big);font-weight:800;font-size:11.5px;color:#177536;letter-spacing:.02em;text-align:center}
   .hang:before,.hang:after{content:"";position:absolute;top:-18px;width:2px;height:18px;background:#111}
   .hang:before{left:26px} .hang:after{right:26px}
-  /* POS 카운터 — 개방된 좌측 앞 */
-  .bcounter{position:absolute;left:26px;top:186px;transform:translateZ(88px)}
-  .bc-face{position:absolute;border:2px solid #111;background:#fff}
-  .bc-front{width:84px;height:60px;transform:translateZ(26px);display:flex;align-items:flex-end;justify-content:center;
-    font-family:var(--big);font-weight:800;font-size:11px;color:#177536;padding-bottom:5px;background:linear-gradient(180deg,#fff 55%,#EAF5EC 55%)}
-  .bc-top{width:84px;height:52px;transform:rotateX(90deg) translateZ(26px) translateY(-26px);background:#F4F1E8}
-  .bc-side{width:52px;height:60px;left:84px;transform:rotateY(90deg) translateZ(-26px);background:#F0EDE3}
-  /* 굿즈 크레이트 — 우측 벽 앞 */
-  .bcrate{position:absolute;width:44px;height:30px;border:2px solid #111;background:#279E4C;
-    background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 3px,transparent 3px 9px)}
-  .bcr1{left:238px;top:214px;transform:translateZ(30px)}
-  .bcr2{left:274px;top:214px;transform:translateZ(-14px);background:#D9A62E}
-  .bcr3{left:252px;top:180px;transform:translateZ(8px);background:#E07A2E}
+  /* 프롭 박스 (계산대 · 라이브보드) — 크레이트와 동일 구성 */
+  .pbox{position:absolute}
+  .pf2{position:absolute;border:1.5px solid #111}
+  .p-front{display:flex;align-items:flex-end;justify-content:center}
+  /* 동선 표시 */
+  .chev{position:absolute;width:9px;height:9px;border-top:2.6px solid #1C8A31;border-right:2.6px solid #1C8A31;
+    animation:b3dflow 2.6s linear infinite}
+  @keyframes b3dflow{0%{opacity:.12;transform:scale(.85)}18%{opacity:1;transform:scale(1.18)}
+    45%{opacity:.12;transform:scale(.85)}100%{opacity:.12;transform:scale(.85)}}
+  .wp{position:absolute;width:19px;height:19px;border-radius:50%;background:#279E4C;border:1.2px solid #fff;
+    color:#fff;font-family:var(--big);font-weight:800;font-size:10px;display:flex;align-items:center;
+    justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.28)}
+  .wp.end{background:#111}
+  .walker{position:absolute;width:11px;height:11px;border-radius:50%;background:#E4573D;border:1.5px solid #fff;
+    box-shadow:0 1px 4px rgba(0,0,0,.35);animation:b3dwalk 9s linear infinite}
+  /* 우유박스 매대 — 뒷면 8열 × 3단 (340×340×270 → 37.4×37.4×29.7px) */
+  .crate{position:absolute;width:37.4px;height:29.7px}
+  .cf{position:absolute;border:1.2px solid #1D1D1D}
+  .c-front{width:37.4px;height:29.7px;transform:translateZ(18.7px)}
+  .c-top{width:37.4px;height:37.4px;transform:rotateX(90deg) translateZ(18.7px) translateY(-18.7px)}
+  .c-side{width:37.4px;height:29.7px;left:37.4px;transform:rotateY(90deg) translateZ(-18.7px)}
+  .lat{background-image:
+    repeating-linear-gradient(45deg,rgba(0,0,0,.16) 0 1px,transparent 1px 6px),
+    repeating-linear-gradient(-45deg,rgba(0,0,0,.16) 0 1px,transparent 1px 6px)}
+  .cw{background-color:#FFFFFF} .cg{background-color:#63C87A}
+  .c-front:after{content:"";position:absolute;left:50%;top:6px;transform:translateX(-50%);
+    width:16px;height:5px;border:1.2px solid rgba(0,0,0,.42);border-radius:3px;background:rgba(0,0,0,.06)}
+  .cgoods{position:absolute;left:2px;right:2px;top:-5px;height:9px;transform:translateZ(18.7px);
+    display:flex;gap:1.5px;align-items:flex-end;justify-content:center}
+  .cgoods i{width:6px;border-radius:2px 2px 1px 1px;border:1px solid rgba(0,0,0,.4)}
+  .cgoods i:nth-child(1){background:#E4573D;height:8px}
+  .cgoods i:nth-child(2){background:#F2B23C;height:6px}
+  .cgoods i:nth-child(3){background:#4FA85F;height:9px}
+  .cgoods i:nth-child(4){background:#E9E4D6;height:7px}
+  .ptag{position:absolute;left:50%;bottom:2.5px;transform:translateX(-50%) translateZ(19.2px);
+    background:#fff;border:1px solid #111;font-family:var(--big);font-weight:800;font-size:4.6px;
+    line-height:1;padding:1.6px 3px;color:#111;white-space:nowrap}
+  /* 우측 참여 유도존 */
+  .rz-kicker{position:absolute;left:0;right:0;top:20px;text-align:center;font-family:var(--big);
+    font-weight:800;font-size:6.5px;letter-spacing:.26em;color:#177536}
+  .rz-title{position:absolute;left:0;right:0;top:32px;text-align:center;font-family:var(--big);
+    font-weight:800;font-size:13px;color:#111;line-height:1.25}
+  .rz-qr{position:absolute;left:50%;top:74px;transform:translateX(-50%);width:50px;height:50px;
+    background:#fff;border:1.5px solid #111;padding:5px}
+  .rz-qr b{display:block;width:100%;height:100%;
+    background-image:repeating-linear-gradient(90deg,#111 0 4px,#fff 4px 8px),
+                     repeating-linear-gradient(0deg,#111 0 4px,transparent 4px 8px)}
+  .rz-cap{position:absolute;left:0;right:0;top:130px;text-align:center;font-family:var(--big);
+    font-weight:700;font-size:7px;color:rgba(0,0,0,.6)}
+  .rz-chip{position:absolute;left:50%;top:148px;transform:translateX(-50%);background:#279E4C;color:#fff;
+    font-family:var(--big);font-weight:800;font-size:7px;padding:4px 10px;letter-spacing:.06em}
   .p3d-hint{font-size:11px;color:var(--ink-4);margin-top:6px;font-weight:700}
   .p3d-tags{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;justify-content:center}
   .p3t{font-size:11px;font-weight:800;color:var(--ink-2);font-family:var(--big)}
@@ -1309,7 +1347,7 @@
                 <div class="bb-sign">CSES<br>GROCERY STORE</div>
               </div>
               <!-- 우측벽 · 패널 2칸 (좌측은 완전 오픈) -->
-              <div class="bf face-right"><div class="wall-poster">GOOD VALUE<br>GOOD CHOICE</div></div>
+              <div class="bf face-right"><div class="rz-kicker">STEP 01 – 02</div><div class="rz-title">방문하고<br>설문 참여하기</div><div class="rz-qr"><b></b></div><div class="rz-cap">내 휴대폰으로 3분</div><div class="rz-chip">20,000 VALUE 지급</div></div>
               <!-- 파스시아 트러스 -->
               <div class="bf fascia fascia-f">CSES GROCERY STORE</div>
               <div class="bf fascia fascia-l">SOCIAL VALUE MARKET</div>
@@ -1318,24 +1356,18 @@
               <div class="bpost bp1"></div><div class="bpost bp2"></div><div class="bpost bp3"></div><div class="bpost bp4"></div>
               <!-- 행잉 사인 (참가업체명) -->
               <div class="bf hang">CSES 사회적가치연구원</div>
-              <!-- POS 카운터 -->
-              <div class="bcounter">
-                <div class="bc-face bc-front">POS</div>
-                <div class="bc-face bc-top"></div>
-                <div class="bc-face bc-side"></div>
-              </div>
-              <!-- 굿즈 크레이트 -->
-              <div class="bcrate bcr1"></div>
-              <div class="bcrate bcr2"></div>
-              <div class="bcrate bcr3"></div>
+              <!-- 계산대 · 라이브보드 · 동선 (JS 생성) -->
+              <div id="b3dProps"></div>
+              <!-- 우유박스 매대 — 뒷면 8열 × 3단 -->
+              <div id="b3dCrates"></div>
             </div>
           </div>
-          <div class="p3d-hint"><span class="tf">🖱️</span> 드래그해서 돌려보세요 · 3m × 3m 사이드 부스 — 뒤 3칸 + 우측 2칸 패널 · 좌측 오픈</div>
+          <div class="p3d-hint"><span class="tf">🖱️</span> 드래그해서 돌려보세요 · 뒷면 매대 8열 × 3단(24개) · 계산대는 매대 좌측 끝에 접합 · 바닥 화살표가 실제 이동 방향</div>
           <div class="p3d-tags">
             <span class="p3t"><i style="background:#279E4C"></i>파사드 · 스티커</span>
             <span class="p3t"><i style="background:#2B4EFF"></i>설문 존</span>
-            <span class="p3t"><i style="background:#E07A2E"></i>굿즈 진열</span>
-            <span class="p3t"><i style="background:#D9A62E"></i>POS 카운터</span>
+            <span class="p3t"><i style="background:#63C87A"></i>우유박스 매대 · 24개</span>
+            <span class="p3t"><i style="background:#E4573D"></i>관람객 동선</span>
           </div>
         </div>
         <div class="gcap"><div class="gno">PLATE 01</div><div class="gt">부스 전체 운영 개요 — 3D</div><div class="gd">코엑스 기본부스 도면 기준 — 4포스트 · 파스시아 · 행잉 사인 · 좌측 개방 동선</div></div>
@@ -1382,9 +1414,9 @@
       <!-- PLATE 05 · 그로서리 존 -->
       <div class="gitem" data-i="4">
         <div class="plate p-shelf">
-          <div class="sh-row"><div class="sh-tag">CUTE · 5,000V</div><div class="sh-items"><span class="tf">🥕</span><span class="tf">🍓</span><span class="tf">🌼</span></div></div>
+          <div class="sh-row"><div class="sh-tag">CUTE · 8,000V</div><div class="sh-items"><span class="tf">🥕</span><span class="tf">🍓</span><span class="tf">🌼</span></div></div>
           <div class="sh-bar"></div>
-          <div class="sh-row"><div class="sh-tag">PRACTICAL · 15,000V</div><div class="sh-items"><span class="tf">👛</span><span class="tf">🧴</span><span class="tf">🧢</span></div></div>
+          <div class="sh-row"><div class="sh-tag">PRACTICAL · 12,000V</div><div class="sh-items"><span class="tf">👛</span><span class="tf">🧴</span><span class="tf">🧢</span></div></div>
           <div class="sh-bar"></div>
           <div class="sh-note">1인 = 귀여운 굿즈 1 + 실용 굿즈 1</div>
         </div>
@@ -1396,8 +1428,8 @@
         <div class="plate p-pos">
           <div class="pp-rc">
             <div class="pp-t">RECEIPT</div>
-            <div class="pp-l"><span>CUTE GOODS</span><b>5,000 V</b></div>
-            <div class="pp-l"><span>PRACTICAL</span><b>15,000 V</b></div>
+            <div class="pp-l"><span>CUTE GOODS</span><b>8,000 V</b></div>
+            <div class="pp-l"><span>PRACTICAL</span><b>18,000 V</b></div>
             <div class="pp-l hl"><span>당신의 유형</span><b>? → 공개!</b></div>
             <div class="pp-l"><span>BALANCE</span><b>0 V</b></div>
             <div class="pp-bc"></div>
@@ -1553,8 +1585,8 @@
         <div class="rc-l"><span>체크 항목</span><b>12개</b></div>
         <div class="rc-hr"></div>
         <div class="rc-sec">GOODS REWARD</div>
-        <div class="rc-l"><span>CUTE GOODS</span><b>5,000 V</b></div>
-        <div class="rc-l"><span>PRACTICAL GOODS</span><b>15,000 V</b></div>
+        <div class="rc-l"><span>CUTE GOODS</span><b>8,000 V</b></div>
+        <div class="rc-l"><span>PRACTICAL GOODS</span><b>18,000 V</b></div>
         <div class="rc-l"><span>TOTAL</span><b>20,000 V</b></div>
         <div class="rc-l"><span>CSES REWARD</span><b>-20,000 V</b></div>
         <div class="rc-l"><span>BALANCE</span><b>0 V</b></div>
@@ -2052,11 +2084,11 @@
         '<b>재고 관리:</b> 소쿠리 최대 1,000개 · 소진 현황 2시간 단위 체크'
       ]},
       { no:'PLATE 05', t:'그로서리 존 운영', ops:[
-        '<b>진열:</b> CUTE 굿즈(5,000V · 3~4종)와 PRACTICAL 굿즈(15,000V · 3~4종) 분리 진열',
+        '<b>진열:</b> CUTE 굿즈(8,000V · 3~4종)와 PRACTICAL 굿즈(18,000V · 3~4종) 분리 진열',
         '<b>선택 규칙:</b> 귀여운 굿즈 1개 + 실용 굿즈 1개 = 1인 2개 (조합 고정)',
         '<b>예시 상품:</b> CUTE — 채소 키링, 과일 모양 동전지갑 / PRACTICAL — 미니 파우치, 생활 소품',
         '<b>안내 인력:</b> 1명 — 조합 규칙 안내, 진열 정돈, 재고 보충',
-        '<b>연출:</b> 실제 마트처럼 가격표(5,000V / 15,000V)와 카테고리 사인 부착'
+        '<b>연출:</b> 실제 마트처럼 가격표(8,000V / 18,000V)와 카테고리 사인 부착'
       ]},
       { no:'PLATE 06', t:'POS 존 운영', ops:[
         '<b>결제 흐름:</b> 굿즈 바코드 스캔 → 20,000 리워드 바코드 스캔 → 차감 → 영수증 출력',
@@ -2447,7 +2479,7 @@
       ]},
       { no:'STEP 04', t:'장보기 · POS 결제 — 굿즈 2개', list:[
         '<b>목적:</b> &ldquo;내 실천으로 장을 봤다&rdquo;는 완결 경험 — 영수증이 기념품',
-        '<b>방식:</b> CUTE(5,000V) 1개 + PRACTICAL(15,000V) 1개 선택 → 바코드 스캔 → 결제 → 영수증',
+        '<b>방식:</b> CUTE(8,000V) 1개 + PRACTICAL(18,000V) 1개 선택 → 바코드 스캔 → 결제 → 영수증',
         '<b>영수증:</b> RESULT REPORT — 유형·가치창출 금액·체크 항목 수 공개',
         '<b>디자인 산출물:</b> 굿즈, 가격표, POS 화면, 영수증 서식',
         '<b>운영 포인트:</b> 영수증·소쿠리 인증샷 포인트 운영, 백업(수기 차감) 준비'
@@ -3034,7 +3066,7 @@ var WITEMS = [
 ['F-02','SKU 수·카테고리 최종 결정',['현수','윤희','CSES'],'2026-08-19','P0','CSES',
  '현재 Cute / Practical 각 3–4종은 가안이며, 종류를 줄여달라는 요청도 반영해 운영 가능한 SKU 수를 결정합니다.',
  'SKU 수와 각 수량이 확정.',''],
-['F-03','5,000V + 15,000V 조합 승인',['윤희','CSES'],'2026-08-19','P0','CSES',
+['F-03','8,000V + 18,000V 조합 승인',['윤희','CSES'],'2026-08-19','P0','CSES',
  'VALUE는 판매가가 아니라 체험 상징값이므로 굿즈 구성과 함께 승인받습니다.',
  '모든 가격표·POS·영수증에 동일한 VALUE 사용.',''],
 ['F-04','기준 참여자·수량 산정 재계산',['현수'],'2026-08-19','P0','RISK',
@@ -3693,10 +3725,10 @@ var PLAN_SEED = {
     ]
   },
   sku: [
-    {id:'C1', grp:'Cute · 5,000 V',      name:'채소 아크릴 키링',        qty:500,   unit:'1,200 – 1,600', lead:'10 – 14일', cust:'도안 제작 · 양면 인쇄'},
-    {id:'C2', grp:'Cute · 5,000 V',      name:'과일 실리콘 동전지갑',    qty:500,   unit:'1,500 – 2,000', lead:'14일',      cust:'로고 각인'},
-    {id:'P1', grp:'Practical · 15,000 V', name:'코튼 미니 파우치',        qty:500,   unit:'2,500 – 3,200', lead:'10일',      cust:'실크스크린 1도'},
-    {id:'P2', grp:'Practical · 15,000 V', name:'실리콘 폴딩 컵',          qty:500,   unit:'2,800 – 3,500', lead:'14일',      cust:'로고 인쇄'},
+    {id:'C1', grp:'Cute · 8,000 V',      name:'채소 아크릴 키링',        qty:500,   unit:'1,200 – 1,600', lead:'10 – 14일', cust:'도안 제작 · 양면 인쇄'},
+    {id:'C2', grp:'Cute · 8,000 V',      name:'과일 실리콘 동전지갑',    qty:500,   unit:'1,500 – 2,000', lead:'14일',      cust:'로고 각인'},
+    {id:'P1', grp:'Practical · 18,000 V', name:'코튼 미니 파우치',        qty:500,   unit:'2,500 – 3,200', lead:'10일',      cust:'실크스크린 1도'},
+    {id:'P2', grp:'Practical · 18,000 V', name:'실리콘 폴딩 컵',          qty:500,   unit:'2,800 – 3,500', lead:'14일',      cust:'로고 인쇄'},
     {id:'R1', grp:'방문 리워드',          name:'방문 인증 스티커',        qty:1000,  unit:'130 – 180',     lead:'5 – 7일',   cust:'4도 인쇄 · 도무송'},
     {id:'R2', grp:'팔로우 리워드',        name:'미니 소쿠리 (장바구니 겸용)', qty:500, unit:'1,000 – 1,400', lead:'7 – 10일',  cust:'라벨 부착'}
   ],
@@ -3863,6 +3895,97 @@ conn = S.connect('plan', function(v,live){
 render();
 })();
 
+
+/* ===== 3D 부스 · 우유박스 매대 생성 (뒷면 8열 × 3단) ===== */
+(function(){
+  var host=document.getElementById('b3dCrates'); if(!host) return;
+  var CWD=37.4, CHT=29.7, X0=16, FLOOR=272, ZB=-165+CWD/2;
+  var PRICE=['8,000 V','12,000 V'], html='';
+  for(var t=0;t<3;t++){
+    for(var i=0;i<8;i++){
+      var top=FLOOR-(t+1)*CHT, left=X0+i*CWD, cls=((i+t)%2===1)?'cg':'cw', isTop=(t===2);
+      html+='<div class="crate" style="left:'+left+'px;top:'+top+'px;transform:translateZ('+ZB+'px)">'
+          +   '<div class="cf c-front lat '+cls+'"></div>'
+          +   (isTop?'<div class="cf c-top lat '+cls+'"></div>':'')
+          +   (i===7?'<div class="cf c-side lat '+cls+'"></div>':'')
+          +   (isTop?'<div class="cgoods"><i></i><i></i><i></i><i></i></div>':'')
+          +   (isTop?'<div class="ptag">'+PRICE[i%2]+'</div>':'')
+          + '</div>';
+    }
+  }
+  host.innerHTML=html;
+})();
+
+/* ===== 3D 부스 · 계산대(90° 접합) + 동선 ===== */
+(function(){
+  var host=document.getElementById('b3dProps'); if(!host) return;
+  var F=272, out='';
+  function box(x,y,z,w,h,d,o){
+    o=o||{};
+    var t='<div class="pbox" style="left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px;'
+        + 'transform:translateZ('+z+'px)'+(o.rotY?' rotateY('+o.rotY+'deg)':'')+'">';
+    t+='<div class="pf2 p-front" style="width:'+w+'px;height:'+h+'px;transform:translateZ('+(d/2)+'px);'
+      +'background:'+(o.front||'#fff')+';'+(o.fstyle||'')+'">'+(o.label||'')+'</div>';
+    t+='<div class="pf2" style="width:'+w+'px;height:'+d+'px;background:'+(o.top||'#F2EFE5')+';'
+      +'transform:rotateX(90deg) translateZ('+(d/2)+'px) translateY('+(-d/2)+'px)"></div>';
+    t+='<div class="pf2" style="width:'+d+'px;height:'+h+'px;left:'+w+'px;background:'+(o.side||'#EDE9DD')+';'
+      +'transform:rotateY(90deg) translateZ('+(-d/2)+'px)"></div>';
+    if(o.both) t+='<div class="pf2 p-front" style="width:'+w+'px;height:'+h+'px;'
+      +'transform:rotateY(180deg) translateZ('+(d/2)+'px);background:'+(o.front||'#fff')+';'
+      +(o.fstyle||'')+'">'+(o.label||'')+'</div>';
+    return t+'</div>';
+  }
+  /* 계산대 — 90° 회전해 매대 좌측 끝에 접합 */
+  out+=box(-14, F-60, -72, 100, 60, 40, {rotY:90, both:1,
+    front:'linear-gradient(180deg,#fff 54%,#EAF5EC 54%)', top:'#F2EFE5', side:'#EDE9DD',
+    fstyle:'font-family:var(--big);font-weight:800;font-size:8px;color:#177536;letter-spacing:.1em;padding-bottom:5px',
+    label:'POS · 계산'});
+  /* 라이브 보드 */
+  out+=box(60, F-106, -50, 30, 46, 5, {both:1, front:'#111', top:'#333', side:'#222',
+    fstyle:'align-items:stretch;flex-direction:column;padding:3px;font-family:var(--big)',
+    label:'<b style="display:block;background:#279E4C;color:#fff;font-weight:800;font-size:4px;'
+        + 'text-align:center;padding:1.5px 0">TODAY</b>'
+        + '<s style="display:block;text-decoration:none;color:#fff;font-weight:800;font-size:6px;'
+        + 'text-align:center;margin-top:4px">12,480,000</s>'});
+
+  /* ===== 동선 ===== */
+  var FY=F-1.6;
+  var WP=[[300,148,1],[288,-40,1],[268,-108,0],[170,-108,1],[78,-108,0],[72,-8,1],[52,150,1]];
+  var segs=[], total=0;
+  for(var i=0;i<WP.length-1;i++){
+    var dx=WP[i+1][0]-WP[i][0], dz=WP[i+1][1]-WP[i][1], len=Math.sqrt(dx*dx+dz*dz);
+    segs.push({x0:WP[i][0],z0:WP[i][1],dx:dx,dz:dz,len:len}); total+=len;
+  }
+  var idx=0;
+  segs.forEach(function(sg){
+    var n=Math.max(2,Math.round(sg.len/20));
+    var ang=Math.atan2(sg.dx,-sg.dz)*180/Math.PI;
+    for(var k=0;k<n;k++){
+      var t=(k+0.5)/n, cx=sg.x0+sg.dx*t, cz=sg.z0+sg.dz*t;
+      out+='<div class="chev" style="left:'+(cx-5.5)+'px;top:'+(FY-5.5)+'px;'
+         + 'transform:translateZ('+cz+'px) rotateX(90deg) rotate('+(ang-45)+'deg);'
+         + 'animation-delay:'+(idx*0.11).toFixed(2)+'s"></div>';
+      idx++;
+    }
+  });
+  var no=0;
+  WP.forEach(function(w){
+    if(!w[2]) return; no++;
+    out+='<div class="wp'+(no===5?' end':'')+'" style="left:'+(w[0]-9.5)+'px;top:'+(FY-9.5)+'px;'
+       + 'transform:translateZ('+w[1]+'px) rotateX(90deg)">'+no+'</div>';
+  });
+  var acc=0, kf='@keyframes b3dwalk{0%{left:'+(WP[0][0]-5.5)+'px;transform:translateZ('+WP[0][1]+'px) rotateX(90deg)}';
+  segs.forEach(function(sg){
+    acc+=sg.len;
+    kf+=(acc/total*100).toFixed(1)+'%{left:'+(sg.x0+sg.dx-5.5)+'px;'
+      + 'transform:translateZ('+(sg.z0+sg.dz)+'px) rotateX(90deg)}';
+  });
+  kf+='}';
+  var st=document.createElement('style'); st.textContent=kf; document.head.appendChild(st);
+  out+='<div class="walker" style="left:'+(WP[0][0]-5.5)+'px;top:'+(FY-5.5)+'px;'
+     + 'transform:translateZ('+WP[0][1]+'px) rotateX(90deg)"></div>';
+  host.innerHTML=out;
+})();
 </script>
 
 </body>
