@@ -1028,6 +1028,58 @@
     padding:7px 13px;color:var(--ink-3);cursor:pointer;transition:.13s}
   .pl-bar button:hover{border-color:var(--ink);color:var(--ink)}
 
+
+  /* 리워드 / KPI / 갭 */
+  .pl-rw{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+  @media(max-width:760px){.pl-rw{grid-template-columns:1fr}}
+  .pl-rc{border:1.5px solid var(--line);padding:16px 18px}
+  .pl-rc.sum{background:var(--accent);border-color:var(--accent)}
+  .pl-rc .rk{font-family:var(--big);font-weight:800;font-size:9.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-4)}
+  .pl-rc.sum .rk{color:rgba(255,255,255,.75)}
+  .pl-rc input{font-family:var(--big);font-weight:800;font-size:27px;border:none;border-bottom:1.5px solid var(--line);
+    width:100%;padding:4px 0;margin-top:6px;color:var(--ink);letter-spacing:-.02em;background:none}
+  .pl-rc input:focus{outline:none;border-color:var(--accent)}
+  .pl-rc .rv{font-family:var(--big);font-weight:800;font-size:27px;color:#fff;margin-top:10px;letter-spacing:-.02em}
+  .pl-rc .ru{font-size:11.5px;color:var(--ink-3);margin-top:4px}
+  .pl-rc.sum .ru{color:rgba(255,255,255,.85)}
+  .pl-chk{font-family:var(--big);font-weight:800;font-size:12px;padding:9px 14px;margin-bottom:16px;
+    border-left:2.5px solid var(--accent);background:var(--accent-soft);color:var(--accent)}
+  .pl-chk.bad{border-color:var(--warn2);background:var(--warn2-soft);color:var(--warn2)}
+  .pl-rt{font-size:13.5px;line-height:1.75;color:var(--ink-2);border-top:1px solid var(--line-2);padding:12px 0}
+  .pl-rt b{display:block;font-family:var(--big);font-weight:800;font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-4);margin-bottom:5px}
+  .pl-rt span{outline:none;border-radius:2px;padding:1px 3px;margin-left:-3px;display:block}
+  .pl-rt span:hover{background:var(--accent-soft)}
+  .pl-rt span:focus{background:#fff;box-shadow:0 0 0 2px var(--accent)}
+
+  .pl-kt{border-top:2px solid var(--ink)}
+  .pl-kr{display:grid;grid-template-columns:1.1fr .8fr 1.4fr 1.7fr 28px;gap:0 14px;align-items:center;
+    padding:12px 0;border-bottom:1px solid var(--line-2)}
+  @media(max-width:760px){.pl-kr{grid-template-columns:1fr 1fr;gap:6px 12px}}
+  .pl-kr .kn{font-family:var(--big);font-weight:800;font-size:14px;color:var(--ink)}
+  .pl-kr input{font-family:var(--big);font-weight:800;font-size:17px;border:none;border-bottom:1.5px solid var(--line);
+    width:100%;padding:3px 0;color:var(--accent);background:none}
+  .pl-kr input:focus{outline:none;border-color:var(--accent)}
+  .pl-kr .kh,.pl-kr .kx{font-size:12.5px;color:var(--ink-3);line-height:1.6}
+  .pl-kr [contenteditable]{outline:none;border-radius:2px;padding:1px 3px;margin-left:-3px}
+  .pl-kr [contenteditable]:hover{background:var(--accent-soft)}
+  .pl-kr [contenteditable]:focus{background:#fff;box-shadow:0 0 0 2px var(--accent)}
+  .pl-del{border:none;background:none;cursor:pointer;color:var(--ink-4);font-size:15px;line-height:1}
+  .pl-del:hover{color:var(--warn2)}
+  .pl-add{border:1.5px dashed var(--line);background:none;width:100%;padding:10px;margin-top:10px;cursor:pointer;
+    font-family:var(--big);font-weight:800;font-size:12px;color:var(--ink-4);transition:.13s}
+  .pl-add:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+  .pl-gr{display:grid;grid-template-columns:22px 1fr auto 28px;gap:0 12px;align-items:center;
+    padding:12px 0;border-bottom:1px solid var(--line-2);cursor:pointer}
+  .pl-gr:hover{background:var(--accent-soft)}
+  .pl-gb{width:19px;height:19px;border:1.5px solid var(--ink);display:grid;place-items:center;background:#fff}
+  .pl-gr.on .pl-gb{background:var(--accent);border-color:var(--accent);color:#fff}
+  .pl-gr.on .gt{text-decoration:line-through;color:var(--ink-4)}
+  .pl-gr .gt{font-size:14px;color:var(--ink-2);outline:none;border-radius:2px;padding:1px 3px}
+  .pl-gr .gt:focus{background:#fff;box-shadow:0 0 0 2px var(--accent)}
+
   /* 설문 */
   .pl-scols{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px}
   @media(max-width:860px){.pl-scols{grid-template-columns:1fr}}
@@ -1287,9 +1339,24 @@
     <div id="plBudget"></div>
 
     <!-- 4. 굿즈 -->
-    <h3 id="pl-sku">4. 굿즈 SKU 구성안 <span class="tf">🎁</span></h3>
+        <h3 id="pl-reward">4. 리워드 구조 <span class="tf">💳</span></h3>
+    <p class="sec-sub" style="margin:0 0 18px">설문 완료자에게 지급하는 금액과 그 조합입니다. 숫자를 고치면 합계 검증이 바로 다시 계산됩니다.</p>
+    <div id="plReward"></div>
+
+<h3 id="pl-sku">4. 굿즈 SKU 구성안 <span class="tf">🎁</span></h3>
     <p class="sec-sub" style="margin:0 0 18px">“종류를 줄여달라”는 요청을 반영한 추천안입니다. 8/19에 이 중 하나를 골라 주시면 바로 발주 준비에 들어갑니다.</p>
     <div id="plSku"></div>
+
+    <!-- 6. KPI -->
+    <h3 id="pl-kpi">6. KPI 목표 <span class="tf">📈</span></h3>
+    <p class="sec-sub" style="margin:0 0 18px">행사가 끝났을 때 성과로 보고할 숫자입니다. 목표를 바꾸면 굿즈 발주 수량 근거도 함께 바뀝니다.</p>
+    <div id="plKpi"></div>
+
+    <!-- 7. 아직 비어 있는 것 -->
+    <h3 id="pl-gap">7. 아직 비어 있는 것 <span class="tf">🔍</span></h3>
+    <p class="sec-sub" style="margin:0 0 18px">기획안을 완성하려면 채워야 하는 항목입니다. 받는 대로 체크하세요.</p>
+    <div id="plGap"></div>
+
   </section>
 </div>
 
@@ -2638,7 +2705,7 @@
     var PW = '0818';
     var UNLOCKED = false;
     var TEXT_KEY = 'eeh_edits_v2';
-    var EDIT_SECTIONS = ['s-cal','s-gal','s-con','s-goods','s-team','s-contact'];
+    var EDIT_SECTIONS = ['s-home','s-cal','s-gal','s-con','s-goods','s-team','s-contact'];
     var SELECTORS = [
       '.sec-sub', '.callout', '.sec-head h2',
       '.milestone-strip .msd', '.milestone-strip .mst',
@@ -2750,7 +2817,7 @@
       if (sub) head.insertBefore(btn, sub); else head.appendChild(btn);
     });
     // 자유 수정 섹션 표시 (비밀번호 불필요)
-    ['s-check'].forEach(function(id){
+    ['s-check','s-plan'].forEach(function(id){
       var sec = document.getElementById(id);
       if (!sec) return;
       var head = sec.querySelector('.sec-head');
@@ -3732,7 +3799,33 @@ var PLAN_SEED = {
     {id:'R1', grp:'방문 리워드',          name:'방문 인증 스티커',        qty:1000,  unit:'130 – 180',     lead:'5 – 7일',   cust:'4도 인쇄 · 도무송'},
     {id:'R2', grp:'팔로우 리워드',        name:'미니 소쿠리 (장바구니 겸용)', qty:500, unit:'1,000 – 1,400', lead:'7 – 10일',  cust:'라벨 부착'}
   ],
-  skuNote: 'VALUE(5,000 / 15,000)는 체험 상징값이며 실제 원가와 다릅니다. 단가는 8/16 기준 조사값이고 발주 시점에 재확인합니다. 전 품목 5% 여유분을 별도로 확보합니다.'
+  reward: {
+    total: 20000, cute: 8000, practical: 12000,
+    rule: '설문 완료자 전원에게 20,000 VALUE를 동일 지급합니다. Cute 8,000 + Practical 12,000 = 20,000으로 정확히 소진되며, 1인 2개(각 카테고리 1개씩)가 기본 조합입니다.',
+    why: 'Cute를 5,000으로 두면 20,000으로 Cute만 4개를 담아갈 수 있어 Practical 재고가 남습니다. 8,000 / 12,000 조합은 최대 Cute 2개(16,000)까지만 가능해 자연스럽게 1+1로 유도됩니다.'
+  },
+
+  kpi: [
+    {k:'방문',        target:1000, how:'방문 스티커 배부 수',   note:'부스 앞을 지나 스티커를 받은 사람'},
+    {k:'인스타 팔로우', target:600,  how:'팔로우 확인 수',       note:'방문 대비 60% 목표'},
+    {k:'설문 완료',    target:500,  how:'VALUE 바코드 발급 수', note:'핵심 지표 — 발주 수량의 기준'},
+    {k:'POS 결제 완료', target:500,  how:'영수증 출력 수',       note:'설문 완료자 전원이 장보기까지 완주'}
+  ],
+
+  gaps: [
+    {t:'설문 문항 — CSES 확정본',        s:'CSES', done:false},
+    {t:'문항별 환산 금액표',             s:'CSES', done:false},
+    {t:'항목별 산출 근거 한 줄',         s:'CSES', done:false},
+    {t:'부스 그래픽 시안 (백월·파사드)',  s:'EEH',  done:false},
+    {t:'굿즈 UV 전사 스티커 도안',        s:'EEH',  done:false},
+    {t:'라이브보드 구현 범위 협의',       s:'공동', done:false}
+  ],
+
+  misc: {
+    goalLine:'', mainCopy:'', boothOpen:'', opsStaff:'', meeting:''
+  },
+
+  skuNote: 'VALUE(8,000 / 12,000)는 체험 상징값이며 실제 원가와 다릅니다. 8,000 + 12,000 = 20,000으로 딱 떨어지게 잡아 한 카테고리만 여러 개 담아가는 경우를 막았습니다. 단가는 발주 시점에 재확인하고, 전 품목 5% 여유분을 별도로 확보합니다.'
 };
 
 
@@ -3753,7 +3846,15 @@ function status(m,t){
 }
 function merge(v){
   if(!v) return;
-  ['cats','survey','logic','budget','sku','skuPlan'].forEach(function(k){ if(v[k]) D[k]=v[k]; });
+  ['cats','survey','logic','budget','sku','skuPlan','reward','misc'].forEach(function(k){ if(v[k]) D[k]=v[k]; });
+  if(v.kpi) D.kpi=v.kpi;
+  if(v.gaps) D.gaps=v.gaps;
+  if(!D.reward) D.reward=JSON.parse(JSON.stringify(PLAN_SEED.reward));
+  if(!D.kpi) D.kpi=JSON.parse(JSON.stringify(PLAN_SEED.kpi));
+  if(!D.gaps) D.gaps=JSON.parse(JSON.stringify(PLAN_SEED.gaps));
+  if(!D.misc) D.misc=JSON.parse(JSON.stringify(PLAN_SEED.misc));
+  if(!Array.isArray(D.kpi)){ var kk=[]; for(var q in D.kpi) kk.push(D.kpi[q]); D.kpi=kk; }
+  if(!Array.isArray(D.gaps)){ var gg=[]; for(var w in D.gaps) gg.push(D.gaps[w]); D.gaps=gg; }
   if(v.budgetTotal) D.budgetTotal=v.budgetTotal;
   if(v.skuNote) D.skuNote=v.skuNote;
   if(!Array.isArray(D.survey)){ var a=[]; for(var x in D.survey) a.push(D.survey[x]); D.survey=a; }
@@ -3845,7 +3946,68 @@ function renderSku(){
   host.innerHTML=html;
 }
 
-function render(){ renderSurvey(); renderLogic(); renderBudget(); renderSku(); }
+
+/* ---- 4. 리워드 구조 ---- */
+function renderReward(){
+  var host=document.getElementById('plReward'); if(!host) return;
+  var R=D.reward||{}; var sum=(+R.cute||0)+(+R.practical||0), ok=(sum===(+R.total||0));
+  host.innerHTML=
+    '<div class="pl-rw">'
+   +  '<div class="pl-rc"><div class="rk">CUTE · 귀여운 굿즈</div>'
+   +    '<input type="number" step="500" data-rw="cute" value="'+(+R.cute||0)+'">'
+   +    '<div class="ru">1개당 차감되는 VALUE</div></div>'
+   +  '<div class="pl-rc"><div class="rk">PRACTICAL · 실용 굿즈</div>'
+   +    '<input type="number" step="500" data-rw="practical" value="'+(+R.practical||0)+'">'
+   +    '<div class="ru">1개당 차감되는 VALUE</div></div>'
+   +  '<div class="pl-rc sum"><div class="rk">REWARD · 전원 지급</div>'
+   +    '<input type="number" step="1000" data-rw="total" value="'+(+R.total||0)+'" '
+   +      'style="color:#fff;border-bottom-color:rgba(255,255,255,.45)">'
+   +    '<div class="ru">설문 완료 시 전원 동일</div></div>'
+   +'</div>'
+   +'<div class="pl-chk'+(ok?'':' bad')+'">'
+   +  (ok ? '✓ ' : '⚠ ')
+   +  won(R.cute)+' + '+won(R.practical)+' = '+won(sum)
+   +  (ok ? ' — 리워드가 정확히 소진됩니다 (1인 2개)' : ' — 전원 지급액 '+won(R.total)+'과 맞지 않습니다')
+   +'</div>'
+   +'<div class="pl-rt"><b>지급 규칙</b><span contenteditable="true" data-rw="rule">'+e(R.rule)+'</span></div>'
+   +'<div class="pl-rt"><b>이 조합인 이유</b><span contenteditable="true" data-rw="why">'+e(R.why)+'</span></div>';
+}
+
+/* ---- 6. KPI ---- */
+function renderKpi(){
+  var host=document.getElementById('plKpi'); if(!host) return;
+  var K=D.kpi||[], html='<div class="pl-kt">';
+  K.forEach(function(r,i){
+    html+='<div class="pl-kr">'
+      +'<span class="kn" contenteditable="true" data-kk="'+i+'">'+e(r.k)+'</span>'
+      +'<span><input type="number" step="50" data-kt="'+i+'" value="'+(+r.target||0)+'"></span>'
+      +'<span class="kh" contenteditable="true" data-kh="'+i+'">'+e(r.how)+'</span>'
+      +'<span class="kx" contenteditable="true" data-kx="'+i+'">'+e(r.note)+'</span>'
+      +'<button class="pl-del" type="button" data-kdel="'+i+'" title="삭제">✕</button></div>';
+  });
+  html+='</div><button class="pl-add" type="button" data-kadd="1">＋ KPI 항목 추가</button>';
+  host.innerHTML=html;
+}
+
+/* ---- 7. 아직 비어 있는 것 ---- */
+function renderGap(){
+  var host=document.getElementById('plGap'); if(!host) return;
+  var G=D.gaps||[], done=G.filter(function(x){return x.done;}).length;
+  var html='<div class="pl-chk'+(done===G.length&&G.length?'':' bad')+'">'
+    +(done===G.length&&G.length?'✓ ':'⚠ ')+G.length+'개 중 '+done+'개 확보'
+    +(done===G.length&&G.length?' — 기획안을 확정할 수 있습니다':' — 나머지 '+(G.length-done)+'개가 오면 확정됩니다')+'</div>';
+  G.forEach(function(g,i){
+    html+='<div class="pl-gr'+(g.done?' on':'')+'" data-gi="'+i+'">'
+      +'<span class="pl-gb">'+(g.done?'✓':'')+'</span>'
+      +'<span class="gt" contenteditable="true" data-gt="'+i+'">'+e(g.t)+'</span>'
+      +'<span class="wtag '+(g.s==='CSES'?'CSES':(g.s==='EEH'?'PROPOSAL':'RECOMMEND'))+'">'+e(g.s)+'</span>'
+      +'<button class="pl-del" type="button" data-gdel="'+i+'" title="삭제">✕</button></div>';
+  });
+  html+='<button class="pl-add" type="button" data-gadd="1">＋ 항목 추가</button>';
+  host.innerHTML=html;
+}
+
+function render(){ renderSurvey(); renderLogic(); renderBudget(); renderSku(); renderReward(); renderKpi(); renderGap(); }
 
 /* ---- 편집 이벤트 ---- */
 document.addEventListener('blur', function(ev){
@@ -3855,6 +4017,12 @@ document.addEventListener('blur', function(ev){
     var id=t.getAttribute('data-qid');
     D.survey.forEach(function(q){ if(q.id===id) q.q=v; }); save(); return;
   }
+  if(t.hasAttribute('data-rw')){ var rk=t.getAttribute('data-rw');
+    if(rk==='rule'||rk==='why'){ D.reward[rk]=v; save(); } return; }
+  if(t.hasAttribute('data-kk')){ i=+t.getAttribute('data-kk'); D.kpi[i].k=v; save(); return; }
+  if(t.hasAttribute('data-kh')){ i=+t.getAttribute('data-kh'); D.kpi[i].how=v; save(); return; }
+  if(t.hasAttribute('data-kx')){ i=+t.getAttribute('data-kx'); D.kpi[i].note=v; save(); return; }
+  if(t.hasAttribute('data-gt')){ i=+t.getAttribute('data-gt'); D.gaps[i].t=v; save(); return; }
   if(t.hasAttribute('data-bk')){ i=+t.getAttribute('data-bk'); D.budget[i].k=v; save(); return; }
   if(t.hasAttribute('data-bd')){ i=+t.getAttribute('data-bd'); D.budget[i].d=v; save(); return; }
   if(t.hasAttribute('data-sn')){ i=+t.getAttribute('data-sn'); D.sku[i].name=v; save(); return; }
@@ -3869,10 +4037,20 @@ document.addEventListener('change', function(ev){
   if(t.hasAttribute('data-lg')){ D.logic[t.getAttribute('data-lg')]=Number(t.value)||0; save(); return; }
   if(t.hasAttribute('data-bv')){ i=+t.getAttribute('data-bv'); D.budget[i].v=Number(t.value)||0; save(); return; }
   if(t.hasAttribute('data-sq')){ i=+t.getAttribute('data-sq'); D.sku[i].qty=Number(t.value)||0; save(); return; }
+  if(t.hasAttribute('data-rw')){ var rk=t.getAttribute('data-rw');
+    if(rk==='cute'||rk==='practical'||rk==='total'){ D.reward[rk]=Number(t.value)||0; save(); } return; }
+  if(t.hasAttribute('data-kt')){ i=+t.getAttribute('data-kt'); D.kpi[i].target=Number(t.value)||0; save(); return; }
 });
 
 document.addEventListener('click', function(ev){
   var t=ev.target; if(!t.closest) return;
+  var el;
+  if((el=t.closest('[data-kdel]'))){ D.kpi.splice(+el.getAttribute('data-kdel'),1); save(); return; }
+  if((el=t.closest('[data-kadd]'))){ D.kpi.push({k:'새 지표',target:0,how:'집계 방법',note:''}); save(); return; }
+  if((el=t.closest('[data-gdel]'))){ D.gaps.splice(+el.getAttribute('data-gdel'),1); save(); return; }
+  if((el=t.closest('[data-gadd]'))){ D.gaps.push({t:'새 항목',s:'CSES',done:false}); save(); return; }
+  if((el=t.closest('.pl-gr')) && !t.closest('[contenteditable]') && !t.closest('.pl-del')){
+    var gi=+el.getAttribute('data-gi'); D.gaps[gi].done=!D.gaps[gi].done; save(); return; }
   if(t.closest('#plReset')){
     if(confirm('모든 기획 데이터를 초안 상태로 되돌립니다.\n팀 전체 화면이 함께 바뀝니다. 계속할까요?')){
       D=JSON.parse(JSON.stringify(PLAN_SEED)); save();
