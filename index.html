@@ -1621,6 +1621,32 @@ footer{border-top-color:var(--line)}
 .dv-front .stack{position:absolute;left:0;right:0;bottom:0;background:#DF3A21;
   background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 1px,transparent 1px 22px),repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 1px,transparent 1px 16px),linear-gradient(rgba(255,255,255,.12),rgba(0,0,0,.15))}
 .dv-front .steps .g span{font-size:6px}
+/* FRONT — 덱 입면 비율 그대로 (1192 : 565 + 영수증 하단 여유) */
+.dv-front2{position:relative;width:92%;aspect-ratio:1192/640;overflow:visible}
+.dv-front2 .pn{position:absolute;top:0;height:88%;border:1px solid #111;overflow:hidden}
+.dv-front2 .pn.g{background:#C9C5B9}.dv-front2 .pn.r{background:#B5261A}
+.dv-front2 .pn .cap{position:absolute;left:6px;top:5px;font-family:var(--big);font-size:8px;letter-spacing:.14em;color:rgba(0,0,0,.55);font-weight:800}
+.dv-front2 .pn.r .cap{color:rgba(255,255,255,.75)}
+.dv-front2 .logo{position:absolute;left:11.5%;top:9%;width:28%;color:#B52412;--logo-stroke:#7A1408}
+.dv-front2 .logo svg{width:100%;height:auto;display:block}
+.dv-front2 .steps{position:absolute;left:9%;right:6%;top:14%;color:#fff;font-family:var(--big);display:flex;flex-direction:column;gap:10px}
+.dv-front2 .steps .h{display:block;width:100%}
+.dv-front2 .steps .g{width:100%}
+.dv-front2 .steps .h{font-size:10px;font-weight:800;line-height:1.3}
+.dv-front2 .steps .g{display:grid;grid-template-columns:1fr 1fr;gap:6px 4px;margin-top:8px}
+.dv-front2 .steps .g b{display:block;font-size:7px;letter-spacing:.14em}
+.dv-front2 .steps .g span{display:block;font-size:7.5px;font-family:var(--small);font-weight:700;margin-top:1px}
+.dv-front2 .stack{position:absolute;display:flex;flex-direction:column}
+.dv-front2 .stack i{flex:1;background:#DF3A21;border:1px solid #7A1408;
+  background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 1px,transparent 1px 33.3%),linear-gradient(rgba(255,255,255,.14),rgba(0,0,0,.12)),radial-gradient(rgba(0,0,0,.35) .8px,transparent 1.2px);background-size:auto,auto,4px 4px}
+.dv-front2 .obj{position:absolute;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+.dv-front2 .rcpt{position:absolute;left:53.9%;width:13.8%;top:-2%;height:104%;background:#F6F4EE;box-shadow:0 10px 24px rgba(0,0,0,.5);overflow:hidden;z-index:2}
+.dv-front2 .rcpt img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.dv-front2 .dim{position:absolute;left:0;width:53.5%;top:91%;border-top:1px solid var(--ink-3);text-align:center;font-family:var(--big);font-size:9px;color:var(--ink-3);letter-spacing:.08em;padding-top:3px}
+.dv-front2 .dim:before,.dv-front2 .dim:after{content:"";position:absolute;top:-4px;width:1px;height:8px;background:var(--ink-3)}
+.dv-front2 .dim:before{left:0}.dv-front2 .dim:after{right:0}
+.dv-top{aspect-ratio:678/570;height:auto}
+.dv-top .crt{background:#DF3A21;border:1px solid #7A1408;background-image:radial-gradient(rgba(0,0,0,.3) .8px,transparent 1.2px),repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 30%);background-size:4px 4px,auto}
 .dv-top .tp-path{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .dv-top .tp-path path{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:6 5}
 .dv-top .lp{position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid #111;box-shadow:0 0 0 4px rgba(255,255,255,.5)}
@@ -1752,7 +1778,7 @@ input,select,textarea{color-scheme:dark}
 .b3-stage:active{cursor:grabbing}
 .b3-stage.sm{height:380px}
 .b3{position:relative;width:330px;height:330px;transform-style:preserve-3d;transform-origin:165px 200px 0;
-  transform:translateY(var(--ty,80px)) scale(var(--s,1)) rotateX(var(--rx,-26deg)) rotateY(var(--ry,34deg));will-change:transform}
+  transform:translateY(var(--ty,66px)) scale(var(--s,1)) rotateX(var(--rx,-26deg)) rotateY(var(--ry,34deg));will-change:transform}
 .b3 *{transform-style:preserve-3d}
 .b3 .f{position:absolute;backface-visibility:hidden}
 .b3 .floor{left:0;top:35px;width:330px;height:330px;transform:rotateX(90deg);background:#C9C5B9;
@@ -1777,7 +1803,9 @@ input,select,textarea{color-scheme:dark}
 .b3 .wall.right .panel{width:165px} .b3 .wall.right .p4{left:0}.b3 .wall.right .p5{left:165px}
 .b3 .wall-logo{position:absolute;left:8px;top:22px;width:96px;color:#ED0000;--logo-stroke:#000}
 .b3 .wall-logo svg{width:100%;height:auto;display:block}
-.b3 .wall-logo.big{left:6px;width:98px;top:22px}
+.b3 .wall-logo.span{left:70px;top:24px;width:172px;color:#B52412;--logo-stroke:#7A1408}
+.b3 .banner{top:-84px;width:96px;height:284px;transform-origin:left center;background:#F6F4EE;box-shadow:0 10px 24px rgba(0,0,0,.45);overflow:hidden}
+.b3 .banner img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
 .b3 .wall-rc{position:absolute;left:50%;top:6px;transform:translateX(-50%);width:52px;height:250px;object-fit:cover;object-position:top;box-shadow:0 8px 18px rgba(0,0,0,.35)}
 .b3 .wall-steps{position:absolute;left:12px;top:22px;right:10px;color:#fff;font-family:var(--big)}
 .b3 .wall-steps .h{font-weight:800;font-size:11px;letter-spacing:.04em;line-height:1.2}
@@ -2026,14 +2054,14 @@ input,select,textarea{color-scheme:dark}
     <div class="hm-grid" style="margin-top:52px">
       <div>
         <h3 style="margin-top:0">부스 디자인 — 3D</h3>
-        <p class="sec-sub" style="margin:0 0 16px">3m × 3m 코엑스 기본부스. 뒷벽 3칸(그레이 · 그레이 · 영수증) + 우측 2칸(레드 · BUY YOUR SOCIAL VALUE), 좌측과 정면은 개방.
-        레드 크레이트 위에 굿즈가 놓이고, 동선은 IN → TEST → GIFT → COUNTER → OUT 한 방향입니다. 드래그해서 돌려보세요.</p>
+        <p class="sec-sub" style="margin:0 0 16px">ㄴ자 개방형 조립 부스 — 뒷벽 그레이 3칸(P1·P2에 걸친 로고) + 우측 레드 2칸(BUY YOUR SOCIAL VALUE), 코너에 초대형 영수증 배너, 좌측과 정면은 개방.
+        덱의 TOP VIEW · FRONT 위치 그대로 — 동선은 IN → TEST → GIFT → COUNTER → OUT 한 방향입니다. 드래그해서 돌려보세요.</p>
         <div id="hmBooth3d"></div>
         <div class="hm-zones">
-          <div class="z"><div class="zt">TEST · 우측 앞</div><div class="zd">크레이트 3단 위 iMac · QR 스캔 · 20문항 가치 검사 (STEP 1–2)</div></div>
-          <div class="z"><div class="zt">GIFT · 뒷벽</div><div class="zd">레드 크레이트 5열 × 2줄 · ENVIRONMENT / CARE / SHARING / COMMUNITY 16종 중 10종 순환 진열</div></div>
-          <div class="z"><div class="zt">COUNTER · 좌측 앞</div><div class="zd">VALUE 바코드 스캔 → 개당 10,000 VALUE 차감 → CSES OFFICIAL VALUE RECEIPT 출력 · 패키지</div></div>
-          <div class="z"><div class="zt">영수증 벽 · OUT</div><div class="zd">뒷벽 3번째 칸 초대형 영수증 — 앱의 내 결과와 같은 종이 위에서 만나는 포토존, 좌측 OUT</div></div>
+          <div class="z"><div class="zt">TEST · 정면 우측 코너</div><div class="zd">크레이트 3단 위 iMac · QR 스캔 · 20문항 가치 검사 (STEP 1–2)</div></div>
+          <div class="z"><div class="zt">GIFT · 뒷벽 좌측부터</div><div class="zd">레드 크레이트 5열 × 2줄(뒷줄 3단 · 앞줄 2단) · ENVIRONMENT / CARE / SHARING / COMMUNITY 16종 중 10종 순환 진열</div></div>
+          <div class="z"><div class="zt">COUNTER · 정면 좌측</div><div class="zd">크레이트 3열 3단 + 레드 램프 · VALUE 바코드 스캔 → 개당 10,000 VALUE 차감 → 영수증 출력 · 패키지</div></div>
+          <div class="z"><div class="zt">영수증 배너 · OUT</div><div class="zd">뒷벽과 우측벽이 만나는 코너의 초대형 영수증 배너 — 앱의 내 결과와 같은 종이 위에서 만나는 포토존, 좌측 중앙 OUT</div></div>
         </div>
         <div class="hm-jump">
           <button type="button" data-go="s-gal">부스 운영 · FRONT / TOP VIEW</button>
@@ -2212,7 +2240,7 @@ input,select,textarea{color-scheme:dark}
     <div class="sec-head">
       <span class="sec-n">BOOTH</span>
       <h2>부스 디자인과 동선</h2>
-      <p class="sec-sub">0905 공간기획 덱 기준. 3m × 3m 코엑스 기본부스에 레드 크레이트, 그레이 패널, 초대형 영수증 벽, 레드 STEP 벽이 들어갑니다.
+      <p class="sec-sub">0905 공간기획 덱의 FRONT · TOP VIEW를 그대로 옮겼습니다. ㄴ자 개방형 조립 부스(뒷벽 그레이 3칸 + 우측 레드 2칸, 좌측·정면 개방)에 레드 크레이트, 코너 초대형 영수증 배너, 레드 STEP 벽이 들어갑니다.
       동선은 <b>IN → TEST → GIFT → COUNTER → OUT</b> 한 방향. 각 플레이트를 클릭하면 그 구역의 운영 내용이 작은 창으로 열리고, PLATE 01은 드래그해서 돌려볼 수 있습니다.</p>
     </div>
 
@@ -2231,25 +2259,33 @@ input,select,textarea{color-scheme:dark}
       <!-- PLATE 01 · 3D 부스 (와이드) -->
       <div class="gitem wide" data-i="0">
         <div class="plate p-dv"><div id="gal3d"></div></div>
-        <div class="gcap"><div class="gno">PLATE 01</div><div class="gt">부스 전체 — 3D</div><div class="gd">뒷벽 그레이 · 그레이 · 영수증 / 우측 레드 · BUY YOUR SOCIAL VALUE / 크레이트 GIFT 15 · COUNTER 6 · TEST 3 / 좌측 · 정면 개방</div></div>
+        <div class="gcap"><div class="gno">PLATE 01</div><div class="gt">부스 전체 — 3D (ㄴ자 개방형 조립 부스)</div><div class="gd">뒷벽 그레이 3칸(P1·P2 로고) + 우측 레드 2칸(BUY YOUR SOCIAL VALUE) + 코너 초대형 영수증 배너 / GIFT 5×2 · COUNTER 3×3 · TEST 3단 · STOCK / 좌측 · 정면 개방</div></div>
       </div>
 
       <!-- PLATE 02 · FRONT -->
-      <div class="gitem" data-i="1">
+      <div class="gitem wide" data-i="1">
         <div class="plate p-dv">
           <div class="dv">
             <div class="dv-t">FRONT</div>
-            <div class="dv-front">
-              <div class="pn g"><span class="cap">P1</span><div class="logo"><svg viewBox="0 0 2182.59 859.312"><use href="#svm-logo"/></svg></div><div class="stack" style="height:34%"></div><img class="obj" data-svm="lampRed" alt="" style="left:14%;bottom:34%;width:34%"></div>
-              <div class="pn g"><span class="cap">P2</span><div class="stack" style="height:17%;left:auto;width:48%"></div><img class="obj" data-svm="lampWhite" alt="" style="left:20%;width:26%;bottom:0"></div>
-              <div class="pn rcp"><span class="cap" style="color:#000">P3</span><img class="rcimg" data-svm="receipt" alt=""></div>
-              <div class="pn r"><span class="cap">P4</span><div class="stack" style="height:0"></div></div>
-              <div class="pn r"><span class="cap">P5</span><div class="steps"><div class="h">BUY YOUR<br>SOCIAL VALUE</div><div class="g"><div><b>STEP 1</b><span>QR 스캔하기</span></div><div><b>STEP 2</b><span>가치 검사하기</span></div><div><b>STEP 3</b><span>가치 교환하기</span></div><div><b>STEP 4</b><span>일상에서 실천하기</span></div></div></div><div class="stack" style="height:50%;left:auto;width:46%"></div><img class="obj" data-svm="imac" alt="" style="right:4%;bottom:50%;width:44%"></div>
+            <div class="dv-front2">
+              <div class="pn g" style="left:0;width:19%"><span class="cap">P1</span></div>
+              <div class="pn g" style="left:20.3%;width:19%"><span class="cap">P2</span></div>
+              <div class="pn g" style="left:40%;width:13.5%"><span class="cap">P3</span></div>
+              <div class="logo"><svg viewBox="0 0 2182.59 859.312"><use href="#svm-logo"/></svg></div>
+              <div class="pn r" style="left:68.1%;width:11.8%"><span class="cap">P4</span></div>
+              <div class="pn r" style="left:80.7%;width:19.3%"><span class="cap">P5</span><div class="steps"><div class="h">BUY YOUR<br>SOCIAL VALUE</div><div class="g"><div><b>STEP 1</b><span>QR 스캔하기</span></div><div><b>STEP 2</b><span>가치 검사하기</span></div><div><b>STEP 3</b><span>가치 교환하기</span></div><div><b>STEP 4</b><span>일상에서 실천하기</span></div></div></div></div>
+              <div class="stack" style="left:0;width:31.6%;top:51.5%;height:36.5%"><i></i><i></i><i></i></div>
+              <img class="obj" data-svm="lampRed" alt="" style="left:2.3%;width:6%;bottom:48.5%">
+              <img class="obj" data-svm="lampWhite" alt="" style="left:44%;width:7.5%;bottom:12%">
+              <div class="rcpt"><img data-svm="receipt" alt=""></div>
+              <div class="stack" style="left:96.3%;width:10.7%;top:51.5%;height:36.5%"><i></i><i></i><i></i></div>
+              <img class="obj" data-svm="imac" alt="" style="left:95.5%;width:12%;bottom:48.5%">
+              <div class="dim"><span>3,000</span></div>
             </div>
-            <div class="dv-dims"><span>◀ 3,000 ▶ 뒷벽 3칸 (P1–P3)</span><span>우측 2칸 (P4–P5) · H 2,370</span></div>
+            <div class="dv-dims"><span>뒷벽 그레이 3칸 (P1–P3) = 3,000</span><span>코너 영수증 배너 · 우측 레드 2칸 (P4–P5)</span></div>
           </div>
         </div>
-        <div class="gcap"><div class="gno">PLATE 02</div><div class="gt">FRONT — 입면 전개</div><div class="gd">P1 로고 + 레드 램프 / P2 스파이럴 램프 / P3 초대형 영수증 / P4 레드 / P5 STEP 1–4 + iMac(TEST)</div></div>
+        <div class="gcap"><div class="gno">PLATE 02</div><div class="gt">FRONT — 덱 입면 그대로</div><div class="gd">P1·P2에 걸친 로고 / COUNTER 3×3 위 레드 램프 / P3 앞 스파이럴 램프 / 코너 초대형 영수증 배너 / P4 레드 / P5 STEP 1–4 / TEST 3단 + iMac</div></div>
       </div>
 
       <!-- PLATE 03 · TOP VIEW -->
@@ -2258,24 +2294,23 @@ input,select,textarea{color-scheme:dark}
           <div class="dv">
             <div class="dv-t">TOP VIEW</div>
             <div class="dv-top">
-              <svg class="tp-path" viewBox="0 0 300 300" preserveAspectRatio="none"><path d="M170 300 L170 275 L232 262 L232 112 L180 96 L64 96 L64 216 L40 236 L4 160"/></svg>
-              <div class="crt" style="left:25px;top:8px;width:52px;height:36px"></div><div class="crt" style="left:79px;top:8px;width:52px;height:36px"></div><div class="crt" style="left:133px;top:8px;width:52px;height:36px"></div><div class="crt" style="left:187px;top:8px;width:52px;height:36px"></div><div class="crt" style="left:241px;top:8px;width:52px;height:36px"></div>
-              <div class="crt" style="left:25px;top:46px;width:52px;height:36px"></div><div class="crt" style="left:79px;top:46px;width:52px;height:36px"></div><div class="crt" style="left:133px;top:46px;width:52px;height:36px"></div><div class="crt" style="left:187px;top:46px;width:52px;height:36px"></div><div class="crt" style="left:241px;top:46px;width:52px;height:36px"></div>
-              <div class="lb" style="left:128px;top:36px">GIFT</div>
-              <div class="crt" style="left:8px;top:138px;width:52px;height:36px"></div>
-              <div class="crt" style="left:8px;top:254px;width:52px;height:36px"></div><div class="crt" style="left:62px;top:254px;width:52px;height:36px"></div><div class="crt" style="left:116px;top:254px;width:52px;height:36px"></div>
-              <div class="lb" style="left:36px;top:262px">COUNTER</div>
-              <div class="crt" style="left:240px;top:254px;width:52px;height:36px"></div>
-              <div class="lb" style="left:246px;top:262px">TEST</div>
-              <div class="lb w" style="left:-4px;top:150px">OUT</div>
-              <div class="lb w" style="left:160px;top:282px">IN</div>
-              <img class="cart" data-svm="cart" alt="" style="left:150px;top:150px">
-              <div class="lp" style="left:262px;top:96px"></div>
+              <svg class="tp-path" viewBox="0 0 678 570" preserveAspectRatio="none"><path d="M463 570 L463 540 L600 520 L600 400 L390 360 L120 360 L120 470 L60 470 L4 272"/></svg>
+              <div class="crt" style="left:0;top:0;width:17%;height:17%"></div><div class="crt" style="left:17.1%;top:0;width:17%;height:17%"></div><div class="crt" style="left:34.1%;top:0;width:17%;height:17%"></div><div class="crt" style="left:51.3%;top:0;width:17%;height:17%"></div><div class="crt" style="left:68.4%;top:0;width:17%;height:17%"></div>
+              <div class="crt" style="left:0;top:17.1%;width:17%;height:17%"></div><div class="crt" style="left:17.1%;top:17.1%;width:17%;height:17%"></div><div class="crt" style="left:34.1%;top:17.1%;width:17%;height:17%"></div><div class="crt" style="left:51.3%;top:17.1%;width:17%;height:17%"></div><div class="crt" style="left:68.4%;top:17.1%;width:17%;height:17%"></div>
+              <div class="lb" style="left:38%;top:14%">GIFT</div>
+              <div class="crt" style="left:0;top:62.6%;width:14%;height:19%"></div>
+              <div class="crt" style="left:0;top:83%;width:17%;height:17%"></div><div class="crt" style="left:17.1%;top:83%;width:17%;height:17%"></div><div class="crt" style="left:34.3%;top:83%;width:17%;height:17%"></div>
+              <div class="lb" style="left:15%;top:88%">COUNTER</div>
+              <div class="crt" style="left:83%;top:83%;width:17%;height:17%"></div>
+              <div class="lb" style="left:86%;top:88%">TEST</div>
+              <div class="lb w" style="left:-4%;top:43%">OUT</div>
+              <div class="lb w" style="left:62.5%;top:94%">IN</div>
+              <img class="cart" data-svm="cart" alt="" style="left:81%;top:58%;transform:rotate(-28deg)">
             </div>
-            <div class="dv-legend"><span><b>GIFT</b> 뒷벽 크레이트 5 × 2</span><span><b>COUNTER</b> 좌측 앞 3 · 레드 램프</span><span><b>TEST</b> 우측 앞 1 · iMac</span><span><b>○</b> 스파이럴 램프</span><span>점선 = 동선</span></div>
+            <div class="dv-legend"><span><b>GIFT</b> 뒷벽 좌측부터 5 × 2</span><span><b>COUNTER</b> 정면 좌측 3</span><span><b>TEST</b> 정면 우측 1 · iMac</span><span><b>STOCK</b> 좌측 세로 1</span><span><b>IN</b> 정면 68% · <b>OUT</b> 좌측 중앙</span><span>점선 = 동선</span></div>
           </div>
         </div>
-        <div class="gcap"><div class="gno">PLATE 03</div><div class="gt">TOP VIEW — 평면 · 동선</div><div class="gd">IN(정면 중앙) → TEST(우측 앞) → GIFT(뒷벽) → COUNTER(좌측 앞) → OUT(좌측) · 카트는 소품</div></div>
+        <div class="gcap"><div class="gno">PLATE 03</div><div class="gt">TOP VIEW — 덱 평면 그대로</div><div class="gd">IN(정면) → TEST(정면 우측 코너) → GIFT(뒷벽) → COUNTER(정면 좌측) → OUT(좌측 중앙) · 카트는 우측 중하단</div></div>
       </div>
 
       <!-- PLATE 04 · 4 STEP -->
@@ -2337,9 +2372,9 @@ input,select,textarea{color-scheme:dark}
           <div class="pi-r"><span class="pi-k">CARE 4종</span><span class="pi-bar"><i style="width:25%"></i></span><b>250</b></div>
           <div class="pi-r"><span class="pi-k">SHARING 4종</span><span class="pi-bar"><i style="width:25%"></i></span><b>250</b></div>
           <div class="pi-r"><span class="pi-k">COMMUNITY 4종</span><span class="pi-bar"><i style="width:25%"></i></span><b>250</b></div>
-          <div class="pi-note">참여 500명 × 2개 = 1,000개 · 16종 × 약 63개 (가안)</div>
+          <div class="pi-note">참여 500명 × 2개 = 1,000개 · 16종 × 약 63개 (가안) · 크레이트 38 + 예비</div>
         </div>
-        <div class="gcap"><div class="gno">PLATE 08</div><div class="gt">재고 · 물류 운영</div><div class="gd">1인 2개 · 16종 중 10종 비치 순환 · STOCK 크레이트 + 백스톡</div></div>
+        <div class="gcap"><div class="gno">PLATE 08</div><div class="gt">재고 · 물류 운영</div><div class="gd">1인 2개 · 16종 중 10종 비치 순환 · STOCK 크레이트(좌측 세로 1) + 백스톡</div></div>
       </div>
 
       <!-- PLATE 09 · 운영 원칙 (와이드) -->
@@ -2502,7 +2537,7 @@ input,select,textarea{color-scheme:dark}
       <div class="inv-row"><div class="iva">TEST</div><div>VALUE 바코드 (앱 · 지류 백업 카드)</div><div class="ivq">500명</div><div class="ivd ivb">측정 완료자 전원 · 금액 차등</div></div>
       <div class="inv-row"><div class="iva">GIFT</div><div>굿즈 16종 (4카테고리 × 4)</div><div class="ivq">총 1,000개</div><div class="ivd ivb">1인 2개 · 16종 × 약 63개 · 매대 10종 비치 순환</div></div>
       <div class="inv-row"><div class="iva">COUNTER</div><div>가치 영수증 · 크라프트 슬리브 패키지</div><div class="ivq">500장 · 500개</div><div class="ivd ivb">80mm 감열지 · "당신의 일상도 충분히 가치 있습니다"</div></div>
-      <div class="inv-row"><div class="iva">집기</div><div>레드 크레이트 · 램프 2 · iMac · 카트</div><div class="ivq">크레이트 25</div><div class="ivd ivb">GIFT 15 · COUNTER 6 · TEST 3 · STOCK 1 (+예비 3)</div></div>
+      <div class="inv-row"><div class="iva">집기</div><div>레드 크레이트 · 램프 2 · iMac · 카트</div><div class="ivq">크레이트 38</div><div class="ivd ivb">GIFT 25 · COUNTER 9 · TEST 3 · STOCK 1 (+예비 3)</div></div>
     </div>
     <p style="font-size:12px;color:var(--ink-4);margin-top:12px">* 참여 500명 기준 — 최소 보장(측정 금액 10,000 미만)과 인기 종 편중을 확정하면 종별 발주 수량을 다시 계산합니다.</p>
 
@@ -2983,27 +3018,27 @@ input,select,textarea{color-scheme:dark}
   (function(){
     var OPS = [
       { no:'PLATE 01', t:'부스 전체 — 3D', ops:[
-        '<b>구조:</b> 3m × 3m 코엑스 기본부스 — 뒷벽 패널 3칸(P1 그레이·로고 / P2 그레이 / P3 초대형 영수증) + 우측 패널 2칸(P4 레드 / P5 레드·BUY YOUR SOCIAL VALUE STEP 1–4), 좌측과 정면 개방',
-        '<b>동선:</b> IN(정면 중앙) → TEST(우측 앞, iMac) → GIFT(뒷벽 크레이트) → COUNTER(좌측 앞) → OUT(좌측) — 한 방향, 교차 없음',
-        '<b>집기:</b> 레드 플라스틱 크레이트 25개(GIFT 15 · COUNTER 6 · TEST 3 · STOCK 1) · 레드 테이블 램프 1 · 화이트 스파이럴 플로어 램프 1 · iMac 1 · 쇼핑카트 1(소품)',
+        '<b>구조:</b> ㄴ자 개방형 조립 부스 3m × 3m — 뒷벽 그레이 패널 3칸(P1·P2에 걸쳐 로고 / P3) + 우측 레드 패널 2칸(P4 / P5 BUY YOUR SOCIAL VALUE STEP 1–4) + 두 벽이 만나는 코너의 초대형 영수증 배너(천장~바닥), 좌측과 정면 개방',
+        '<b>동선:</b> IN(정면, 좌측에서 약 2/3 지점) → TEST(정면 우측 코너, iMac) → GIFT(뒷벽 크레이트) → COUNTER(정면 좌측) → OUT(좌측 중앙) — 덱 TOP VIEW 그대로, 한 방향',
+        '<b>집기:</b> 레드 플라스틱 크레이트 38개(GIFT 5열×2줄 = 뒷줄 3단 15 + 앞줄 2단 10 · COUNTER 3열×3단 9 · TEST 3단 3 · STOCK 1) · 레드 테이블 램프 1(COUNTER 위) · 화이트 스파이럴 플로어 램프 1(P3 앞) · iMac 1(TEST 위) · 쇼핑카트 1(소품, 우측 중하단)',
         '<b>컬러:</b> 레드 #E8341C / 블랙 / 그레이 패널 #C9C5B9 / 영수증 화이트 — 조명은 램프 2점으로만 포인트, 천장 스팟은 기본',
         '<b>운영 인력(가안):</b> IN·TEST 안내 1, GIFT·재고 1, COUNTER 1 (총 3명 · 피크 시 +1)',
         '<b>피크 대응:</b> 측정은 개인 휴대폰 QR이라 대기 없이 분산 · COUNTER 앞 대기선은 STOCK 크레이트 옆 좌측 여백 사용'
       ]},
       { no:'PLATE 02', t:'FRONT — 입면 전개', ops:[
-        '<b>P1 그레이:</b> SOCIAL VALUE MARKET 레드 스크립트 로고(좌상단) · 하단 크레이트 2×2 위 레드 테이블 램프 — 부스의 첫 인상',
-        '<b>P2 그레이:</b> 그래픽 없이 비움 — 화이트 스파이럴 플로어 램프가 서는 여백 · 크레이트 1',
-        '<b>P3 영수증:</b> CSES OFFICIAL VALUE RECEIPT 초대형 출력(폭 950 × 높이 2,370) — 앱 결과 영수증과 같은 서식 · 포토존',
-        '<b>P4 레드:</b> 단색 레드 + 하단 화이트 소형 로고',
+        '<b>P1 · P2 그레이:</b> 두 칸에 걸쳐 SOCIAL VALUE MARKET 레드 스크립트 로고(상단 중앙) · 그 앞 정면 좌측 COUNTER 크레이트 3×3 위 레드 테이블 램프',
+        '<b>P3 그레이:</b> 그래픽 없이 비움 — 화이트 스파이럴 플로어 램프가 서는 여백',
+        '<b>코너 영수증 배너:</b> CSES OFFICIAL VALUE RECEIPT 초대형 출력(폭 약 780 · 천장 위에서 바닥까지) — 뒷벽과 우측벽 사이 코너에 걸어 앱 결과 영수증과 같은 서식으로 · 포토존',
+        '<b>P4 레드:</b> 단색 레드',
         '<b>P5 레드:</b> BUY YOUR SOCIAL VALUE / STEP 1 QR 스캔하기 · STEP 2 가치 검사하기 · STEP 3 가치 교환하기 · STEP 4 일상에서 실천하기 — 앞에 크레이트 3단 + iMac(TEST)',
-        '<b>출력 사양:</b> 패널 5장 실사 출력(그레이 2 · 영수증 1 · 레드 2) — 코엑스 기본부스 패널 950 × 2,370 기준, 9/4 데이터 LOCK'
+        '<b>출력 사양:</b> 패널 5장 실사 출력(그레이 3 · 레드 2) + 영수증 배너 1장 — 조립 부스 패널 950 × 2,370 기준, 9/4 데이터 LOCK'
       ]},
       { no:'PLATE 03', t:'TOP VIEW — 평면 · 동선', ops:[
-        '<b>GIFT:</b> 뒷벽에 크레이트 5열 × 2줄 — 뒷줄 2단(디스플레이) · 앞줄 1단(집는 매대) · 카테고리 순서 ENVIRONMENT → CARE → SHARING → COMMUNITY',
-        '<b>COUNTER:</b> 좌측 앞 크레이트 3열 2단 — 바코드 스캐너 · 80mm 영수증 프린터 · 패키지(크라프트 슬리브) · 레드 램프',
-        '<b>TEST:</b> 우측 앞 크레이트 3단 + iMac — 화면에 QR과 STEP 안내, 참여자는 본인 휴대폰으로 진행',
-        '<b>STOCK:</b> 좌측 중간 크레이트 1 — 보충용 굿즈 · OUT 옆이라 동선을 막지 않음',
-        '<b>IN / OUT:</b> IN 정면 중앙(바닥 사인) · OUT 좌측(바닥 사인) — 카트는 중앙 소품, 통행 방해 시 GIFT 앞으로 이동',
+        '<b>GIFT:</b> 뒷벽 좌측 끝부터 크레이트 5열 × 2줄(우측 끝은 램프 여백) — 뒷줄 3단(디스플레이) · 앞줄 2단(집는 매대) · 카테고리 순서 ENVIRONMENT → CARE → SHARING → COMMUNITY',
+        '<b>COUNTER:</b> 정면 좌측 크레이트 3열 3단(약 1m 높이) — 바코드 스캐너 · 80mm 영수증 프린터 · 패키지(크라프트 슬리브) · 레드 램프',
+        '<b>TEST:</b> 정면 우측 코너 크레이트 3단 + iMac — 화면에 QR과 STEP 안내, 참여자는 본인 휴대폰으로 진행',
+        '<b>STOCK:</b> 좌측 OUT 아래 세로로 놓인 크레이트 1 — 보충용 굿즈',
+        '<b>IN / OUT:</b> IN 정면(좌측에서 약 2/3 지점, 바닥 사인) · OUT 좌측 중앙(바닥 사인) — 카트는 우측 중하단 소품',
         '<b>대기:</b> COUNTER 앞 최대 4~5명 · 초과 시 안내 인력이 TEST 진입을 잠시 조절'
       ]},
       { no:'PLATE 04', t:'BUY YOUR SOCIAL VALUE — 4 STEP', ops:[
@@ -3038,7 +3073,7 @@ input,select,textarea{color-scheme:dark}
         '<b>수량(500명 기준):</b> 굿즈 1,000개(1인 2개) — 16종 × 약 63개(가안, 인기 종 +20%) / 크라프트 슬리브 500 / 영수증 감열지 500장 이상',
         '<b>비치·순환:</b> 매대에는 10종 비치, 6종은 STOCK·백스톡 — 2시간마다 소진 종을 교체해 "매번 다른 마켓"처럼 보이게',
         '<b>일자별 배분(가안):</b> 1일차 60% / 2일차 40% — 1일차 마감 후 종별 잔량 기준 재배분',
-        '<b>보관:</b> STOCK 크레이트 1 + 코엑스 지정 창고 — 개장 전 보충 완료 · 크레이트 25개 중 빈 크레이트는 뒤집어 매대 높이 조절',
+        '<b>보관:</b> STOCK 크레이트 1 + 코엑스 지정 창고 — 개장 전 보충 완료 · 크레이트 41개 중 빈 크레이트는 뒤집어 매대 높이 조절',
         '<b>재고 체크:</b> COUNTER 스캔 로그 = 실시간 재고 — 프로젝트 보드 구매 리스트로 집계'
       ]},
       { no:'PLATE 09', t:'운영 원칙 — 3대 핵심 메시지', ops:[
@@ -4717,7 +4752,7 @@ var PLAN_SEED = {
   budget: [
     {k:'공간 · 시공',     v:3300000, d:'부스 목공 · 집기 제작 · 설치 · 철거'},
     {k:'굿즈 · 리워드',   v:3080000, d:'굿즈 16종 1,000개 · 크라프트 슬리브 500 · 이름표'},
-    {k:'그래픽 · 인쇄물', v:1650000, d:'패널 5장(그레이 2 · 영수증 1 · 레드 2) · 크레이트 사인 · 이름표 · 영수증 서식 · iMac 화면'},
+    {k:'그래픽 · 인쇄물', v:1650000, d:'패널 5장(그레이 3 · 레드 2) · 코너 영수증 배너 · 크레이트 사인 · 이름표 · 영수증 서식 · iMac 화면'},
     {k:'운송 · 설치인력', v:880000,  d:'반입 · 하역 · 설치 · 철거 인력과 차량'},
     {k:'현장 운영',       v:770000,  d:'2일 현장 진행 · 스태프'},
     {k:'POS · 장비',      v:660000,  d:'스캐너 · 80mm 프린터 · 태블릿 · 롤지 · 케이블'},
@@ -4751,7 +4786,7 @@ var PLAN_SEED = {
     {id:'L-3', grp:'COMMUNITY · TOGETHER',      name:'찹쌀 경단 동전지갑',  qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
     {id:'L-4', grp:'COMMUNITY · VOICE',         name:'고추 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
     {id:'P-1', grp:'패키지',                    name:'크라프트 슬리브 (@CSES.OFFICIAL)', qty:500, unit:'300 – 450', lead:'7일', cust:'1도 인쇄 · 영수증 슬릿'},
-    {id:'P-2', grp:'집기',                      name:'레드 플라스틱 크레이트 520×360×330', qty:28, unit:'6,000 – 9,000', lead:'5일', cust:'GIFT 15 · COUNTER 6 · TEST 3 · STOCK 1 · 예비 3'}
+    {id:'P-2', grp:'집기',                      name:'레드 플라스틱 크레이트 520×360×330', qty:41, unit:'6,000 – 9,000', lead:'5일', cust:'GIFT 25 · COUNTER 9 · TEST 3 · STOCK 1 · 예비 3'}
   ],
   reward: {
     priceLow: 10000, priceHigh: 10000, avgItems: 2, v3: true,
@@ -4777,7 +4812,7 @@ var PLAN_SEED = {
     {t:'최소 보장 — 측정 금액 10,000 미만 참여자 처리 (제안: 측정 완료 시 굿즈 1개 보장)', s:'CSES', done:false},
     {t:'설문 20문항 · 문항별 지급액 최종 승인 (9/5 문서 기준)',                    s:'CSES', done:false},
     {t:'굿즈 16종 샘플 확인 · 종별 발주 수량(균등 63 vs 인기 종 가중) 확정',       s:'공동', done:false},
-    {t:'패널 5장 그래픽 데이터 LOCK (그레이 2 · 초대형 영수증 1 · 레드 2) — 9/4',   s:'EEH',  done:false},
+    {t:'패널 5장(그레이 3 · 레드 2) + 코너 영수증 배너 그래픽 데이터 LOCK — 9/4',     s:'EEH',  done:false},
     {t:'iMac 안내 화면(QR · STEP 1–4) · 바코드 스캐너 · 80mm 프린터 셋업',          s:'EEH',  done:false},
     {t:'크레이트 카테고리 사인 4 · 굿즈 이름표 16 · 바닥 IN/OUT 사인 제작',         s:'EEH',  done:false},
     {t:'행사 후 팔로업 — 영수증 인증샷 이벤트 · @CSES.OFFICIAL 게시 운영 여부',      s:'CSES', done:false},
@@ -5221,8 +5256,8 @@ render();
         {id:c1.memo, name:'메모', type:'text'}
       ],
       rows:[
-        r1('시작 전','집기','레드 플라스틱 크레이트 520×360×330',28,'',null,'','GIFT 15 · COUNTER 6 · TEST 3 · STOCK 1 · 예비 3'),
-        r1('시작 전','집기','레드 테이블 램프 · 화이트 스파이럴 플로어 램프',2,'',null,'','P1 크레이트 위 · P2 앞'),
+        r1('시작 전','집기','레드 플라스틱 크레이트 520×360×330',41,'',null,'','GIFT 25(5열×2줄, 3단·2단) · COUNTER 9(3열×3단) · TEST 3 · STOCK 1 · 예비 3'),
+        r1('시작 전','집기','레드 테이블 램프 · 화이트 스파이럴 플로어 램프',2,'',null,'','COUNTER 위 · P3 앞'),
         r1('시작 전','집기','iMac (TEST 안내 화면) · 쇼핑카트 소품',2,'',null,'','대여 가능 여부 확인'),
         r1('시작 전','설문 존','태블릿 거치대',2,'',null,'',''),
         r1('시작 전','굿즈 진열','크레이트 카테고리 사인 (블랙)',4,'',null,'','ENVIRONMENT · CARE · SHARING · COMMUNITY'),
@@ -5251,7 +5286,7 @@ render();
         {id:c2.memo, name:'메모', type:'text'}
       ],
       rows:[
-        r2('시작 전','공간 그래픽','뒷벽 그래픽 (패널 3칸)','2,930×2,370mm','윤희','2026-09-04','패널 5장 — P1 그레이·로고 / P2 그레이 / P3 초대형 영수증 / P4 레드 / P5 레드·STEP 1–4'),
+        r2('시작 전','공간 그래픽','뒷벽 그래픽 (패널 3칸)','2,930×2,370mm','윤희','2026-09-04','패널 5장 — P1·P2 그레이(로고 걸침) / P3 그레이 / P4 레드 / P5 레드·STEP 1–4 + 코너 영수증 배너'),
         r2('시작 전','공간 그래픽','우측 패널 그래픽 (2칸)','950×2,370mm × 2','윤희','2026-09-04','STEP 01–02 안내 · QR'),
         r2('시작 전','사이니지','파스시아 · 행잉 사인','코엑스 기본부스 규격','윤희','2026-09-04','참가업체명 표기'),
         r2('시작 전','디지털','설문 태블릿 UI (20문항)','태블릿 가로','현수','2026-09-04','기획 데이터 문항과 동기화'),
@@ -5262,7 +5297,7 @@ render();
         r2('시작 전','굿즈','굿즈 패키지 · 띠지','','윤희','2026-09-04',''),
         r2('시작 전','인쇄물','바닥 IN · OUT 사인 · iMac 안내 화면(QR · STEP)','','현수','2026-09-04',''),
         r2('시작 전','인쇄물','크라프트 슬리브 패키지','@CSES.OFFICIAL 당신의 일상도 충분히 가치 있습니다','윤희','2026-09-04','500개'),
-        r2('시작 전','공간 그래픽','P3 초대형 영수증 패널','CSES OFFICIAL VALUE RECEIPT · 950 × 2,370','윤희','2026-09-04','앱 영수증과 같은 서식')
+        r2('시작 전','공간 그래픽','코너 초대형 영수증 배너','CSES OFFICIAL VALUE RECEIPT · 약 780 × 천장~바닥','윤희','2026-09-04','앱 영수증과 같은 서식 · 뒷벽·우측벽 코너')
       ]};
 
     /* 3. 할 일 */
@@ -6033,6 +6068,14 @@ render();
     var tp = el('div','fc tp'+(dark?' dark':''), 'left:'+x+'px;top:'+(y-CD/2)+'px;width:'+CW+'px;height:'+CD+'px;transform:translateZ('+(zf-CD/2)+'px) rotateX(90deg)');
     c.appendChild(fr); c.appendChild(sd); c.appendChild(tp); root.appendChild(c);
   }
+  function crateR(root, x, zf, elev, open){
+    var c = el('div','cr'+(open?' open':''));
+    var y = FY - elev - CH;
+    var fr = el('div','fc fr', 'left:'+x+'px;top:'+y+'px;width:'+CD+'px;height:'+CH+'px;transform:translateZ('+zf+'px)');
+    var sd = el('div','fc sd', 'left:'+(x-CW/2)+'px;top:'+y+'px;width:'+CW+'px;height:'+CH+'px;transform:translateZ('+(zf-CW/2)+'px) rotateY(-90deg)');
+    var tp = el('div','fc tp', 'left:'+x+'px;top:'+(y-CW/2)+'px;width:'+CD+'px;height:'+CW+'px;transform:translateZ('+(zf-CW/2)+'px) rotateX(90deg)');
+    c.appendChild(fr); c.appendChild(sd); c.appendChild(tp); root.appendChild(c);
+  }
   function bb(root, x, z, elev, inner){
     var b = el('div','bb','left:'+x+'px;top:'+(FY-elev)+'px;transform:translateZ('+z+'px) rotateY(calc(var(--ry,34deg) * -1))');
     b.appendChild(inner); root.appendChild(b); return b;
@@ -6059,64 +6102,67 @@ render();
       +'</svg>';
     b3.appendChild(floor);
 
-    /* 벽 — 뒤 3칸 (그레이 · 로고 / 그레이 / 영수증) + 우측 2칸 (레드 / 레드 · STEP) */
+    /* 벽 — ㄴ자 개방형 조립 부스: 뒷벽 그레이 3칸(P1·P2 걸쳐 로고 / P3) + 우측 레드 2칸(P4 / P5 STEP), 좌측·정면 개방 */
     var back = el('div','f wall back');
-    back.innerHTML = '<div class="panel grey p1"><div class="wall-logo big">'+logoSvg()+'</div></div>'
-      +'<div class="panel grey p2"></div>'
-      +'<div class="panel rcpt p3"><img class="wall-rc" alt="receipt" src="'+src('receipt')+'"></div>';
+    back.innerHTML = '<div class="panel grey p1"></div><div class="panel grey p2"></div><div class="panel grey p3"></div>'
+      +'<div class="wall-logo span">'+logoSvg()+'</div>';
     var right = el('div','f wall right');
-    right.innerHTML = '<div class="panel red p4"><div class="wall-small">'+logoSvg()+'</div></div>'
+    right.innerHTML = '<div class="panel red p4"></div>'
       +'<div class="panel red p5"><div class="wall-steps"><div class="h">BUY YOUR<br>SOCIAL VALUE</div>'
       +'<div class="g"><div><b>STEP 1</b><span>QR 스캔하기</span></div><div><b>STEP 2</b><span>가치 검사하기</span></div><div><b>STEP 3</b><span>가치 교환하기</span></div><div><b>STEP 4</b><span>일상에서 실천하기</span></div></div></div>'
-      +'<div class="wall-small" style="left:auto;right:10px">'+logoSvg()+'</div></div>';
+      +'<div class="wall-small" style="left:auto;right:8px;bottom:6px">'+logoSvg()+'</div></div>';
     b3.appendChild(back); b3.appendChild(right);
-    /* 포스트 (코엑스 기본부스) */
+    /* 초대형 영수증 배너 — 뒷벽과 우측벽이 만나는 코너(FRONT 도면의 P3와 P4 사이)에 천장부터 바닥까지 */
+    var rc = el('div','f banner','left:262px;transform:translateZ(-165px) rotateY(-45deg)');
+    rc.innerHTML = '<img alt="receipt" src="'+src('receipt')+'">';
+    b3.appendChild(rc);
+    /* 포스트 (조립형 부스 기둥) */
     b3.appendChild(el('div','f post','left:-4px;transform:translateZ(-165px)'));
     b3.appendChild(el('div','f post','left:327px;transform:translateZ(-165px)'));
     b3.appendChild(el('div','f post','left:327px;transform:translateZ(165px)'));
     b3.appendChild(el('div','f post','left:-4px;transform:translateZ(165px);opacity:.35'));
 
-    /* GIFT — 뒷벽 크레이트 5열 × 2줄 (뒷줄 2단 · 앞줄 1단) = 15개 */
-    var gx0 = 22, i;
+    /* GIFT — TOP VIEW 그대로: 뒷벽에 좌측 끝부터 5열 × 2줄 (뒷줄 3단 · 앞줄 2단) */
+    var i;
     for(i=0;i<5;i++){
-      crate(b3, gx0+i*CW, -125, 0, false); crate(b3, gx0+i*CW, -125, CH, true);
-      crate(b3, gx0+i*CW, -85, 0, true);
+      crate(b3, i*CW, -125, 0); crate(b3, i*CW, -125, CH); crate(b3, i*CW, -125, CH*2, true);
+      crate(b3, i*CW, -85, 0); crate(b3, i*CW, -85, CH, true);
     }
-    /* 굿즈 진열 — 10종 비치 (뒷줄 5 + 앞줄 5) */
     var show = ['레몬 키링','군고구마 펜던트','토스트 동전지갑','노란 감자 동전지갑','딸기 동전지갑',
                 '머쉬룸 펜던트','생강 키링','당근 동전지갑','가지 동전지갑','고추 키링'];
-    for(i=0;i<5;i++){ bb(b3, gx0+i*CW+CW/2, -145, CH*2-3, img(show[i], 26)); }
-    for(i=0;i<5;i++){ bb(b3, gx0+i*CW+CW/2, -105, CH-3, img(show[5+i], 24)); }
-    bb(b3, 120, -120, 126, lab('GIFT · 16종 중 10종 순환 진열','big'));
+    for(i=0;i<5;i++){ bb(b3, i*CW+CW/2, -145, CH*3-3, img(show[i], 26)); }
+    for(i=0;i<5;i++){ bb(b3, i*CW+CW/2, -105, CH*2-3, img(show[5+i], 24)); }
+    bb(b3, 142, -105, CH*3+40, lab('GIFT · 16종 중 10종 순환 진열','big'));
     var cats=['ENVIRONMENT','CARE','SHARING','COMMUNITY'];
-    for(i=0;i<4;i++){ b3.appendChild(el('div','flab','left:'+(gx0+8+i*71)+'px;top:'+(FY-13)+'px;transform:translateZ(-84.4px)')).textContent=cats[i]; }
+    for(i=0;i<4;i++){ b3.appendChild(el('div','flab','left:'+(2+i*71)+'px;top:'+(FY-CH-13)+'px;transform:translateZ(-84.4px)')).textContent=cats[i]; }
 
-    /* TEST — 우측 앞 크레이트 3단 + iMac */
-    crate(b3, 265, 157, 0); crate(b3, 265, 157, CH); crate(b3, 265, 157, CH*2, true);
-    bb(b3, 265+CW/2, 137, CH*3-2, img('imac', 46));
-    bb(b3, 300, 180, 0, lab('TEST · QR 스캔 · 가치 검사','red'));
+    /* TEST — 우측 앞 코너 (플랜 우하단) 크레이트 3단 + iMac */
+    crate(b3, 273, 165, 0); crate(b3, 273, 165, CH); crate(b3, 273, 165, CH*2, true);
+    bb(b3, 273+CW/2, 145, CH*3-2, img('imac', 46));
+    bb(b3, 273+CW/2, 165, CH*3+56, lab('TEST · QR 스캔 · 가치 검사','red'));
 
-    /* COUNTER — 좌측 앞 크레이트 3열 2단 + 레드 램프 + 패키지 */
-    for(i=0;i<3;i++){ crate(b3, 8+i*CW, 157, 0); crate(b3, 8+i*CW, 157, CH, i===1); }
-    bb(b3, 8+CW/2, 137, CH*2-2, img('lampRed', 30));
-    bb(b3, 8+CW*2+CW/2, 137, CH*2-2, img('kraft', 30));
-    bb(b3, 70, 180, 0, lab('COUNTER · 가치 교환 · 영수증','red'));
+    /* COUNTER — 좌측 앞 (플랜 좌하단) 크레이트 3열 3단 + 레드 램프 + 패키지 (FRONT 도면의 좌측 스택) */
+    for(i=0;i<3;i++){ crate(b3, i*CW, 165, 0); crate(b3, i*CW, 165, CH); crate(b3, i*CW, 165, CH*2, i===1); }
+    bb(b3, CW/2, 145, CH*3-2, img('lampRed', 30));
+    bb(b3, CW*2+CW/2, 145, CH*3-2, img('kraft', 30));
+    bb(b3, CW*1.5, 165, CH*3+22, lab('COUNTER · 가치 교환 · 영수증','red'));
 
-    /* STOCK — 좌측 중간 크레이트 1개 (백스톡) */
-    crate(b3, 8, 60, 0, true); bb(b3, 8+CW/2, 40, CH+2, lab('STOCK','w'));
+    /* STOCK — 좌측 중간, 세로로 놓인 크레이트 1 (플랜 좌측 OUT 아래) */
+    crateR(b3, 0, 104, 0, true); bb(b3, CD/2, 84, CH+2, lab('STOCK','w'));
 
-    /* 램프 · 카트 */
-    shadow(b3, 314, -110, 34, 26); bb(b3, 314, -110, 0, img('lampWhite', 34));
-    shadow(b3, 190, 30, 62, 40); bb(b3, 190, 30, 0, img('cart', 58));
+    /* 화이트 스파이럴 램프 — 뒷벽 P3 앞, GIFT 오른쪽 여백 (FRONT 도면) */
+    shadow(b3, 302, -108, 34, 26); bb(b3, 302, -108, 0, img('lampWhite', 34));
+    /* 카트 — 플랜 우측 중하단 */
+    shadow(b3, 294, 63, 62, 40); bb(b3, 294, 63, 0, img('cart', 58));
 
-    /* IN · OUT */
-    bb(b3, 186, 178, 0, lab('IN','w big'));
-    bb(b3, -10, 0, 0, lab('OUT','w big'));
+    /* IN (정면, 좌측에서 68%) · OUT (좌측 중앙) */
+    bb(b3, 225, 176, 0, lab('IN','w big'));
+    bb(b3, -10, -8, 0, lab('OUT','w big'));
 
     /* 힌트 */
     var hint = el('div','b3-hint');
-    hint.innerHTML = '<span><i style="background:#DE3A22"></i>레드 크레이트 매대 (GIFT 15 · COUNTER 6 · TEST 3 · STOCK 1)</span>'
-      +'<span><i style="background:#C9C5B9"></i>그레이 패널 · 영수증 벽</span><span><i style="background:#111"></i>동선 IN → TEST → GIFT → COUNTER → OUT</span>'
+    hint.innerHTML = '<span><i style="background:#DE3A22"></i>레드 크레이트 (GIFT 25 · COUNTER 9 · TEST 3 · STOCK 1)</span>'
+      +'<span><i style="background:#C9C5B9"></i>ㄴ자 개방형 조립 부스 · 그레이 3칸 + 레드 2칸 · 코너 영수증 배너</span><span><i style="background:#111"></i>동선 IN → TEST → GIFT → COUNTER → OUT</span>'
       +'<span class="sp">🖱️ 드래그해서 돌려보기</span><button type="button" data-view="iso">ISO</button><button type="button" data-view="front">FRONT</button><button type="button" data-view="top">TOP</button>';
     host.appendChild(hint);
 
