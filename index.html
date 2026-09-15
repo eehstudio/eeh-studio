@@ -5906,8 +5906,11 @@ render();
       if(!cN||!cQ||!cM) return;
       (d.rows||[]).forEach(r=>{
         const cells=r.cells||{};
-        if(/크레이트 520/.test(String(cells[cN.id]||'')) && /GIFT 15/.test(String(cells[cM.id]||''))){
-          cells[cQ.id]=41; cells[cM.id]='GIFT 25(5열×2줄, 3단·2단) · COUNTER 9(3열×3단) · TEST 3 · STOCK 1 · 예비 3'; ch=true;
+        const memo=String(cells[cM.id]||'').trim();
+        const stale = /GIFT 15/.test(memo)
+          || (Number(cells[cQ.id])===31 && memo==='GIFT 25(5열×2줄, 3단·2단) · COUNTER 9(3열×3단) · TEST 3 · STOCK 1 · 예비 3');
+        if(/크레이트 520/.test(String(cells[cN.id]||'')) && stale){
+          cells[cQ.id]=41; cells[cM.id]='GIFT 25(5열×2줄, 3단·2단) · COUNTER 9(3열×3단) · TEST 3 · STOCK 1 · 예비 3 = 41'; ch=true;
         }
       });
     });
