@@ -2036,6 +2036,9 @@ h2,h3,strong,b{color:var(--ink)}
 .gd-rule .v{color:var(--ink)}
 .gd-rule .d{color:var(--ink-3)}
 
+/* ---- GOODS · 발주 수량 (9/15) ---- */
+.gd-card .gd-qty{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;border-top:1px solid var(--line);background:var(--paper);font-size:11px;letter-spacing:.06em;color:var(--ink-4)}
+.gd-card .gd-qty b{font-family:var(--title);font-weight:500;font-size:13px;color:var(--accent)}
 /* ---- GOODS · 바코드 (v18) ---- */
 .gd-card .gd-bc{border-top:1px solid var(--line);background:#fff;padding:14px 16px 10px;display:flex;flex-direction:column;align-items:center;gap:8px}
 .gd-card .gd-bc .bc-img{display:block;width:100%;max-width:210px;height:auto;image-rendering:auto;user-select:none}
@@ -2432,7 +2435,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
       <div><div class="fk">Period</div><div class="fv">2026. 9. 21 – 9. 22</div></div>
       <div><div class="fk">Venue</div><div class="fv">코엑스(COEX) A홀 · 3m × 3m</div></div>
       <div><div class="fk">Concept</div><div class="fv">측정으로 밝히고, 화폐로 환산하고, 세상에 보상합니다</div></div>
-      <div><div class="fk">Scale(안)</div><div class="fv">참여자 500명 · 굿즈 16종 1,000개 (1인 2개)</div></div>
+      <div><div class="fk">Scale(안)</div><div class="fv">참여자 500명 · 굿즈 16종 1,300개 (1인 2개)</div></div>
     </div>
   </div>
 
@@ -2525,7 +2528,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
     <div id="plReward"></div>
 
 <h3 id="pl-sku">5. 굿즈 SKU 구성안 — 16종 <span class="tf">🎁</span></h3>
-    <p class="sec-sub" style="margin:0 0 18px">4카테고리 × 4종 = 16종(덱 확정) + 패키지 · 크레이트. 수량은 참여 500명 × 2개 = 1,000개 기준 가안입니다.</p>
+    <p class="sec-sub" style="margin:0 0 18px">4카테고리 × 4종 = 16종(덱 확정) + 패키지 · 크레이트. 종별 수량은 9/15 확정 — 총 1,300개(200 · 100 · 50 · 30 · 20개).</p>
     <div id="plSku"></div>
 
     <!-- 6. KPI -->
@@ -2709,7 +2712,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
           <div class="pi-r"><span class="pi-k">CARE 4종</span><span class="pi-bar"><i style="width:25%"></i></span><b>250</b></div>
           <div class="pi-r"><span class="pi-k">SHARING 4종</span><span class="pi-bar"><i style="width:25%"></i></span><b>250</b></div>
           <div class="pi-r"><span class="pi-k">COMMUNITY 4종</span><span class="pi-bar"><i style="width:25%"></i></span><b>250</b></div>
-          <div class="pi-note">참여 500명 × 2개 = 1,000개 · 16종 × 약 63개 (가안) · 크레이트 41(레드 34 · 화이트 7) + 레드 예비 3</div>
+          <div class="pi-note">굿즈 총 1,300개 — 200개 1종 · 100개 9종 · 50개 2종 · 30개 2종 · 20개 2종 (9/15 확정) · 크레이트 41(레드 34 · 화이트 7) + 레드 예비 3</div>
         </div>
         <div class="gcap"><div class="gno">PLATE 08</div><div class="gt">재고 · 물류 운영</div><div class="gd">1인 2개 · 16종 중 10종 비치 순환 · STOCK 크레이트(좌측 세로 1) + 백스톡</div></div>
       </div>
@@ -2885,7 +2888,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
     <div class="inv">
       <div class="inv-row hd"><div>참여 단계</div><div>품목</div><div>수량</div><div class="ivb">산정 기준</div></div>
       <div class="inv-row"><div class="iva">TEST</div><div>VALUE 바코드 (앱 · 지류 백업 카드)</div><div class="ivq">500명</div><div class="ivd ivb">측정 완료자 전원 · 금액 차등</div></div>
-      <div class="inv-row"><div class="iva">GIFT</div><div>굿즈 16종 (4카테고리 × 4)</div><div class="ivq">총 1,000개</div><div class="ivd ivb">1인 2개 · 16종 × 약 63개 · 매대 10종 비치 순환</div></div>
+      <div class="inv-row"><div class="iva">GIFT</div><div>굿즈 16종 (4카테고리 × 4)</div><div class="ivq">총 1,300개</div><div class="ivd ivb">1인 2개 · 200개 1종 · 100개 9종 · 50개 2종 · 30개 2종 · 20개 2종 · 매대 10종 비치 순환</div></div>
       <div class="inv-row"><div class="iva">COUNTER</div><div>가치 영수증 · 크라프트 슬리브 패키지</div><div class="ivq">500장 · 500개</div><div class="ivd ivb">80mm 감열지 · "당신의 일상도 충분히 가치 있습니다"</div></div>
       <div class="inv-row"><div class="iva">집기</div><div>레드 · 화이트 크레이트 · 램프 2 · iMac · 카트</div><div class="ivq">크레이트 41</div><div class="ivd ivb">GIFT 25 · COUNTER 9 · TEST 6 · STOCK 1 — 레드 34 + 화이트 7(앞쪽 체크) · 레드 예비 3</div></div>
     </div>
@@ -2940,7 +2943,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
     <div class="gd-rules">
       <div class="gd-rule"><div class="k">PRICE</div><div class="v">개당 10,000 VALUE</div><div class="d">가치에 등수를 매기지 않기 위해 하나로 맞췄습니다. 측정 금액(SV)에서 개당 10,000씩 차감됩니다.</div></div>
       <div class="gd-rule"><div class="k">PICK</div><div class="v">2개까지 자유 선택</div><div class="d">내가 체크한 문항의 굿즈를 골라야 하는 것은 아닙니다. 측정으로 받은 밸류 안에서, 카테고리와 상관없이 마음에 드는 굿즈를 두 개까지.</div></div>
-      <div class="gd-rule"><div class="k">DISPLAY</div><div class="v">16종 중 10종 비치 · 순환</div><div class="d">레드 크레이트 5열 × 2줄에 10종을 놓고, 소진되는 종을 STOCK에서 순환 교체합니다. 500명 × 2개 = 1,000개.</div></div>
+      <div class="gd-rule"><div class="k">DISPLAY</div><div class="v">16종 중 10종 비치 · 순환</div><div class="d">레드 크레이트 5열 × 2줄에 10종을 놓고, 소진되는 종을 STOCK에서 순환 교체합니다. 총 1,300개(종별 20~200개).</div></div>
     </div>
 
     <div id="goodsGrid4"></div>
@@ -2953,7 +2956,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
       <div class="fitem hd"><div class="ft">이름표 (Value Tag)</div><div class="fd">앞면 키워드(REFILL) + 문항 한 줄 + 10,000 VALUE / 뒷면 바코드(굿즈별 EAN-13 · 카드 아래 이미지와 같은 파일) — COUNTER 스캔용 · 크레이트 사인 4종과 같은 블랙 사인 서식</div></div>
     </div>
     <div class="fg2" style="margin-top:14px">
-      <div class="fitem hd"><div class="ft">발주 수량 (가안)</div><div class="fd">16종 × 약 63개 = 1,000개 + 인기 종(동전지갑 · 키링) +20% 여유 · 단가와 리드타임은 기획 데이터 › 굿즈 SKU 구성안</div></div>
+      <div class="fitem hd"><div class="ft">발주 수량 (9/15 확정) — 총 1,300개</div><div class="fd">200개 · 버터 스틱 말랑이(GIVE) / 100개 · 군고구마 펜던트(WARMTH) · 양파 키링(CLEAN PLATE) · 생강 키링(HELP) · 고추 키링(VOICE) · 마늘 키링(HANDS) · 감자 키링(WALK) · 머쉬룸 펜던트(RECYCLE) · 레몬 키링(REFILL) · 노란 감자 동전지갑(LOCAL) / 50개 · 찹쌀 경단 동전지갑(TOGETHER) · 토스트 동전지갑(TREAT) / 30개 · 가지 동전지갑(FAIR) · 당근 동전지갑(CIRCLE) / 20개 · 딸기 동전지갑(SWEET) · 토마토 카드 홀더(LIFE) · 단가와 리드타임은 기획 데이터 › 굿즈 SKU 구성안</div></div>
       <div class="fitem hd"><div class="ft">확정 필요</div><div class="fd">측정 금액이 10,000 미만인 참여자의 최소 보장(제안: 측정 완료 시 1개 보장) · 어린이·가족 참여자 응대(대리 측정 가능 여부) · 굿즈 사양(키링 고리 · 동전지갑 지퍼) 샘플 확인</div></div>
     </div>
   </section>
@@ -3421,7 +3424,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
         '<b>백업:</b> POS 장애 시 수기 차감 대장 + 스탬프 · 영수증은 지류 서식으로 대체'
       ]},
       { no:'PLATE 08', t:'재고 · 물류 운영', ops:[
-        '<b>수량(500명 기준):</b> 굿즈 1,000개(1인 2개) — 16종 × 약 63개(가안, 인기 종 +20%) / 크라프트 슬리브 500 / 영수증 감열지 500장 이상',
+        '<b>수량(9/15 확정):</b> 굿즈 총 1,300개(1인 2개) — 200개 1종(GIVE 버터 스틱 말랑이) · 100개 9종 · 50개 2종(TOGETHER · TREAT) · 30개 2종(FAIR · CIRCLE) · 20개 2종(SWEET · LIFE) / 크라프트 슬리브 500 / 영수증 감열지 500장 이상',
         '<b>비치·순환:</b> 매대에는 10종 비치, 6종은 STOCK·백스톡 — 2시간마다 소진 종을 교체해 "매번 다른 마켓"처럼 보이게',
         '<b>일자별 배분(가안):</b> 1일차 60% / 2일차 40% — 1일차 마감 후 종별 잔량 기준 재배분',
         '<b>보관:</b> STOCK 크레이트 1 + 코엑스 지정 창고 — 개장 전 보충 완료 · 크레이트 44개(레드 37 · 화이트 7) 중 빈 크레이트는 뒤집어 매대 높이 조절',
@@ -3518,7 +3521,7 @@ table.bd tbody tr:hover td{background:rgba(232,52,28,.04)}
       { id:'concept',  t:'부스 컨셉·메시지 CSES 최종 승인', d:'체크리스트 4개 카테고리(환경/돌봄/나눔/지역사회) 문항 확정 포함' },
       { id:'kv',       t:'키비주얼 · BI 적용안 컨펌', d:'Grocery Store 락업, 컬러·타이포 시스템 (8.14까지)' },
       { id:'space',    t:'공간 도면 & 시공 스펙 확정', d:'부스 규모, 전기·집기 배치, 코엑스 규정 확인' },
-      { id:'goods',    t:'굿즈 상품군 · 수량 확정', d:'CSES 선정 완료 후 디자인 착수 — 발주 수량 500/1,000개 기준' },
+      { id:'goods',    t:'굿즈 상품군 · 수량 확정', d:'종별 발주 수량 확정 (9/15) — 총 1,300개' },
       { id:'system',   t:'체크리스트 · POS 화면 시스템 테스트', d:'참여→측정→VALUE 지급→결제 전 과정 리허설' },
       { id:'order',    t:'제작 발주 마감 (9.4)', d:'인쇄·굿즈·집기 발주 데이터 최종 출고' },
       { id:'coex',     t:'코엑스 반입 · 시공 일정 조율', d:'행사장 반입/철수 규정 및 야간 시공 가능 여부 확인' }
@@ -5150,7 +5153,7 @@ var PLAN_SEED = {
   /* --- 3. 예산 배분 (VAT 포함 총 11,000,000원) --- */
   budget: [
     {k:'공간 · 시공',     v:3300000, d:'부스 목공 · 집기 제작 · 설치 · 철거'},
-    {k:'굿즈 · 리워드',   v:3080000, d:'굿즈 16종 1,000개 · 크라프트 슬리브 500 · 이름표'},
+    {k:'굿즈 · 리워드',   v:3080000, d:'굿즈 16종 1,300개 · 크라프트 슬리브 500 · 이름표'},
     {k:'그래픽 · 인쇄물', v:1650000, d:'패널 5장(그레이 3 · 레드 2) · 코너 영수증 배너 · 크레이트 사인 · 이름표 · 영수증 서식 · iMac 화면'},
     {k:'운송 · 설치인력', v:880000,  d:'반입 · 하역 · 설치 · 철거 인력과 차량'},
     {k:'현장 운영',       v:770000,  d:'2일 현장 진행 · 스태프'},
@@ -5161,29 +5164,29 @@ var PLAN_SEED = {
 
   /* --- 4. 굿즈 SKU 구성안 (4카테고리 × 4종 = 16종 · 개당 10,000 VALUE) --- */
   skuPlan: {
-    rec: '덱 확정 — 4카테고리 × 4종 = 16종 · 모두 개당 10,000 VALUE · 1인 2개 · 매대 10종 비치 순환',
+    rec: '덱 확정 — 4카테고리 × 4종 = 16종 · 모두 개당 10,000 VALUE · 1인 2개 · 매대 10종 비치 순환 · 종별 수량 9/15 확정(총 1,300개)',
     alts: [
-      '수량 A — 16종 균등 63개(총 1,000) · 단순하지만 인기 종(동전지갑·키링)이 먼저 소진될 수 있음',
-      '수량 B — 인기 8종 80개 + 나머지 8종 50개(총 1,040) · 소진 편차를 줄이는 안 (추천)'
+      '종별 수량 확정(9/15) — 200개 1종(GIVE 버터 스틱 말랑이) · 100개 9종(WARMTH · CLEAN PLATE · HELP · VOICE · HANDS · WALK · RECYCLE · REFILL · LOCAL) · 50개 2종(TOGETHER · TREAT) · 30개 2종(FAIR · CIRCLE) · 20개 2종(SWEET · LIFE) = 총 1,300개',
+      '20~30개 종(딸기 · 토마토 · 가지 · 당근)은 조기 소진 예상 — 매대에는 소량 비치하고 STOCK에서 순환, 소진 시 이름표에 SOLD OUT 표기'
     ]
   },
   sku: [
-    {id:'E-1', grp:'ENVIRONMENT · REFILL',      name:'레몬 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
-    {id:'E-2', grp:'ENVIRONMENT · RECYCLE',     name:'머쉬룸 펜던트',       qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그'},
-    {id:'E-3', grp:'ENVIRONMENT · WALK',        name:'감자 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
-    {id:'E-4', grp:'ENVIRONMENT · CLEAN PLATE', name:'양파 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
-    {id:'C-1', grp:'CARE · WARMTH',             name:'군고구마 펜던트',     qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그'},
-    {id:'C-2', grp:'CARE · HELP',               name:'생강 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
-    {id:'C-3', grp:'CARE · SWEET',              name:'딸기 동전지갑',       qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
-    {id:'C-4', grp:'CARE · LIFE',               name:'토마토 카드 홀더',    qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그'},
-    {id:'S-1', grp:'SHARING · TREAT',           name:'토스트 동전지갑',     qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
-    {id:'S-2', grp:'SHARING · CIRCLE',          name:'당근 동전지갑',       qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
-    {id:'S-3', grp:'SHARING · GIVE',            name:'버터 스틱 말랑이',    qty:63, unit:'2,400 – 3,200', lead:'14일', cust:'이름표 태그'},
-    {id:'S-4', grp:'SHARING · HANDS',           name:'마늘 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
-    {id:'L-1', grp:'COMMUNITY · LOCAL',         name:'노란 감자 동전지갑',  qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
-    {id:'L-2', grp:'COMMUNITY · FAIR',          name:'가지 동전지갑',       qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
-    {id:'L-3', grp:'COMMUNITY · TOGETHER',      name:'찹쌀 경단 동전지갑',  qty:63, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
-    {id:'L-4', grp:'COMMUNITY · VOICE',         name:'고추 키링',           qty:63, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
+    {id:'E-1', grp:'ENVIRONMENT · REFILL',      name:'레몬 키링',           qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
+    {id:'E-2', grp:'ENVIRONMENT · RECYCLE',     name:'머쉬룸 펜던트',       qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그'},
+    {id:'E-3', grp:'ENVIRONMENT · WALK',        name:'감자 키링',           qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
+    {id:'E-4', grp:'ENVIRONMENT · CLEAN PLATE', name:'양파 키링',           qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
+    {id:'C-1', grp:'CARE · WARMTH',             name:'군고구마 펜던트',     qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그'},
+    {id:'C-2', grp:'CARE · HELP',               name:'생강 키링',           qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
+    {id:'C-3', grp:'CARE · SWEET',              name:'딸기 동전지갑',       qty:20, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
+    {id:'C-4', grp:'CARE · LIFE',               name:'토마토 카드 홀더',    qty:20, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그'},
+    {id:'S-1', grp:'SHARING · TREAT',           name:'토스트 동전지갑',     qty:50, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
+    {id:'S-2', grp:'SHARING · CIRCLE',          name:'당근 동전지갑',       qty:30, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
+    {id:'S-3', grp:'SHARING · GIVE',            name:'버터 스틱 말랑이',    qty:200, unit:'2,400 – 3,200', lead:'14일', cust:'이름표 태그'},
+    {id:'S-4', grp:'SHARING · HANDS',           name:'마늘 키링',           qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
+    {id:'L-1', grp:'COMMUNITY · LOCAL',         name:'노란 감자 동전지갑',  qty:100, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
+    {id:'L-2', grp:'COMMUNITY · FAIR',          name:'가지 동전지갑',       qty:30, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
+    {id:'L-3', grp:'COMMUNITY · TOGETHER',      name:'찹쌀 경단 동전지갑',  qty:50, unit:'3,200 – 4,200', lead:'14일', cust:'이름표 태그 · 지퍼'},
+    {id:'L-4', grp:'COMMUNITY · VOICE',         name:'고추 키링',           qty:100, unit:'2,800 – 3,600', lead:'14일', cust:'이름표 태그 · 고리'},
     {id:'P-1', grp:'패키지',                    name:'크라프트 슬리브 (@CSES.OFFICIAL)', qty:500, unit:'300 – 450', lead:'7일', cust:'1도 인쇄 · 영수증 슬릿'},
     {id:'P-2', grp:'집기',                      name:'레드 플라스틱 크레이트 520×360×330', qty:37, unit:'6,000 – 9,000', lead:'5일', cust:'레드 34(GIFT 25 · COUNTER 5 · TEST 3 · STOCK 1) + 예비 3 · 화이트 7 보유(COUNTER 4 · TEST 3 체크)'}
   ],
@@ -5210,7 +5213,7 @@ var PLAN_SEED = {
   gaps: [
     {t:'최소 보장 — 측정 금액 10,000 미만 참여자 처리 (제안: 측정 완료 시 굿즈 1개 보장)', s:'CSES', done:false},
     {t:'설문 20문항 · 문항별 지급액 최종 승인 (9/5 문서 기준)',                    s:'CSES', done:false},
-    {t:'굿즈 16종 샘플 확인 · 종별 발주 수량(균등 63 vs 인기 종 가중) 확정',       s:'공동', done:false},
+    {t:'굿즈 16종 종별 발주 수량 확정 — 총 1,300개 (200 · 100 · 50 · 30 · 20개, 9/15)',       s:'공동', done:true},
     {t:'패널 5장(그레이 3 · 레드 2) + 코너 영수증 배너 그래픽 데이터 LOCK — 9/4',     s:'EEH',  done:false},
     {t:'iMac 안내 화면(QR · STEP 1–4) · 바코드 스캐너 · 80mm 프린터 셋업',          s:'EEH',  done:false},
     {t:'크레이트 카테고리 사인 4 · 굿즈 이름표 16 · 바닥 IN/OUT 사인 제작',         s:'EEH',  done:false},
@@ -5223,7 +5226,7 @@ var PLAN_SEED = {
     goalLine:'', mainCopy:'', boothOpen:'', opsStaff:'', meeting:''
   },
 
-  skuNote: '개당 10,000 VALUE는 체험 상징값이며 실제 원가와 다릅니다. 1인 2개 상한이 확정되어 총량은 참여 500명 × 2 = 1,000개로 잡고, 종별 수량은 인기 종 편중을 반영해 조정합니다. 단가는 발주 시점에 재확인합니다.'
+  skuNote: '개당 10,000 VALUE는 체험 상징값이며 실제 원가와 다릅니다. 1인 2개 상한 기준 종별 수량은 9/15 확정 — 총 1,300개(200 · 100 · 50 · 30 · 20개 5단계). 단가는 발주 시점에 재확인합니다.'
 };
 
 
@@ -5278,6 +5281,12 @@ function merge(v){
   /* 9/14 v16 — GIFT 크레이트 한 층 추가 (38 + 예비 3 = 41) */
   if(D.sku) D.sku.forEach(function(x){ if(x && x.id==='P-2' && /GIFT 15/.test(x.cust||'')){ x.qty=41; x.cust='GIFT 25 · COUNTER 9 · TEST 3 · STOCK 1 · 예비 3'; } });
   /* 9/15 — 앞쪽 TEST 2열 + 화이트 7 체크보드: 레드 41 → 37 */
+  /* 9/15 — 굿즈 종별 발주 수량 확정 (16종 전부 63이면 1회 교체) */
+  if(D.sku){ var g16=D.sku.filter(function(x){ return x && /^[ECSL]-[1-4]$/.test(x.id||''); }); if(g16.length===16 && g16.every(function(x){ return Number(x.qty)===63; })){ D.sku.forEach(function(x){ var sx=PLAN_SEED.sku.filter(function(y){return y.id===x.id;})[0]; if(sx && /^[ECSL]-[1-4]$/.test(x.id)) x.qty=sx.qty; }); } }
+  if(D.skuPlan && /균등 63개/.test((D.skuPlan.alts||[]).join(' '))) D.skuPlan=JSON.parse(JSON.stringify(PLAN_SEED.skuPlan));
+  if(D.skuNote && /1,000개로 잡고/.test(D.skuNote)) D.skuNote=PLAN_SEED.skuNote;
+  if(D.gaps) D.gaps.forEach(function(x){ var sg=PLAN_SEED.gaps[2]; if(x && /균등 63 vs 인기 종/.test(x.t||'')){ x.t=sg.t; x.done=true; } });
+  if(D.budget) D.budget.forEach(function(b){ if(b && b.k==='굿즈 · 리워드' && /1,000개/.test(b.d||'')) b.d=b.d.replace('1,000개','1,300개'); });
   if(D.sku) D.sku.forEach(function(x){ if(x && x.id==='P-2' && /COUNTER 9 · TEST 3/.test(x.cust||'')){ x.qty=37; x.cust='레드 34(GIFT 25 · COUNTER 5 · TEST 3 · STOCK 1) + 예비 3 · 화이트 7 보유(COUNTER 4 · TEST 3 체크)'; } });
 }
 
@@ -5608,7 +5617,7 @@ render();
   const page = document.getElementById('pg-s-board');
   const $b = s => sec.querySelector(s);
   const esc = s => String(s==null?'':s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
-  const BUILD_DATE = '2026.09.15';
+  const BUILD_DATE = '2026.09.16';
   const uid = p => (p||'x') + Math.random().toString(36).slice(2,9);
   const hash = s => { let x=5381; for(const c of 'lm-board:'+s) x=((x<<5)+x+c.charCodeAt(0))>>>0; return x.toString(36); };
   const PW_HASH = '1xbm7j2';
@@ -5664,7 +5673,7 @@ render();
         r1('시작 전','집기','iMac (TEST 안내 화면) · 쇼핑카트 소품',2,'',null,'','대여 가능 여부 확인'),
         r1('시작 전','설문 존','태블릿 거치대',2,'',null,'',''),
         r1('시작 전','굿즈 진열','크레이트 카테고리 사인 (블랙)',4,'',null,'','ENVIRONMENT · CARE · SHARING · COMMUNITY'),
-        r1('시작 전','굿즈 진열','굿즈 이름표 (Value Tag) 16종',1000,'',null,'','키워드 + 문항 + 10,000 VALUE + 바코드'),
+        r1('시작 전','굿즈 진열','굿즈 16종 (9/15 확정 수량)',1300,'',null,'','200 · 버터 스틱 말랑이 / 100 · 군고구마 · 양파 · 생강 · 고추 · 마늘 · 감자 · 머쉬룸 · 레몬 · 노란 감자 / 50 · 찹쌀 경단 · 토스트 / 30 · 가지 · 당근 / 20 · 딸기 · 토마토'), r1('시작 전','굿즈 진열','굿즈 이름표 (Value Tag) 16종',1300,'',null,'','키워드 + 문항 + 10,000 VALUE + 바코드 · 굿즈 1개당 1장'),
         r1('시작 전','POS 카운터','바코드 스캐너',1,'',null,'',''),
         r1('시작 전','POS 카운터','80mm 영수증 프린터 · 용지',1,'',null,'','결과 리포트 영수증 출력'),
         r1('시작 전','공통','연장선 · 멀티탭',3,'',null,'',''),
@@ -5933,6 +5942,22 @@ render();
           cells[cQ.id]=37; cells[cM.id]='GIFT 25(5열×2줄, 3단·2단) · COUNTER 9(3열×3단, 레드 5 · 화이트 4) · TEST 6(2열×3단, 레드 3 · 화이트 3) · STOCK 1 → 레드 34 + 예비 3 = 37 · 화이트 7 보유'; ch=true;
         }
       });
+    });
+    /* 9/15 — 굿즈 종별 수량 확정(총 1,300): 굿즈 행이 없으면 추가, 이름표 1000이면 1300 */
+    (BOARD.dbs||[]).forEach(d=>{
+      if(!/구매 리스트/.test(d.title||'')) return;
+      const cN=(d.cols||[]).find(c=>c.name==='품목'), cQ=(d.cols||[]).find(c=>c.name==='수량'), cM=(d.cols||[]).find(c=>c.name==='메모'), cZ=(d.cols||[]).find(c=>c.name==='구역'), cS=(d.cols||[]).find(c=>c.name==='배송');
+      if(!cN||!cQ) return;
+      const rows=d.rows||[];
+      const tag=rows.find(r=>/이름표 \(Value Tag\)/.test(String((r.cells||{})[cN.id]||'')));
+      if(tag && Number((tag.cells||{})[cQ.id])===1000){ tag.cells[cQ.id]=1300; if(cM) tag.cells[cM.id]='키워드 + 문항 + 10,000 VALUE + 바코드 · 굿즈 1개당 1장'; ch=true; }
+      if(!rows.some(r=>/굿즈 16종 \(9\/15/.test(String((r.cells||{})[cN.id]||'')))){
+        const cells={}; cells[cN.id]='굿즈 16종 (9/15 확정 수량)'; cells[cQ.id]=1300;
+        if(cM) cells[cM.id]='200 · 버터 스틱 말랑이 / 100 · 군고구마 · 양파 · 생강 · 고추 · 마늘 · 감자 · 머쉬룸 · 레몬 · 노란 감자 / 50 · 찹쌀 경단 · 토스트 / 30 · 가지 · 당근 / 20 · 딸기 · 토마토';
+        if(cZ && cZ.opts){ const z=cZ.opts.find(o=>/굿즈 진열/.test(o.name||o.label||'')); if(z) cells[cZ.id]=z.id||z.name; }
+        if(cS && cS.opts){ const st0=cS.opts.find(o=>/시작 전/.test(o.name||o.label||'')); if(st0) cells[cS.id]=st0.id||st0.name; }
+        const idx=tag?rows.indexOf(tag):rows.length; rows.splice(idx,0,{id:'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,6), cells}); d.rows=rows; ch=true;
+      }
     });
     return ch;
   }
@@ -6488,6 +6513,7 @@ window.SVM_BARCODES={"E-1":{"kw":"REFILL","nm":"레몬 키링","code":"209211110
   window.svmFillImgs = fillImgs;
 
   /* ---- 굿즈 4카테고리 × 4 그리드 ---- */
+  var SVM_QTY = {"레몬 키링": 100, "머쉬룸 펜던트": 100, "감자 키링": 100, "양파 키링": 100, "군고구마 펜던트": 100, "생강 키링": 100, "딸기 동전지갑": 20, "토마토 카드 홀더": 20, "토스트 동전지갑": 50, "당근 동전지갑": 30, "버터 스틱 말랑이": 200, "마늘 키링": 100, "노란 감자 동전지갑": 100, "가지 동전지갑": 30, "찹쌀 경단 동전지갑": 50, "고추 키링": 100}; /* 9/15 확정 · 총 1,300 */
   function renderGoods(){
     var host=document.getElementById('goodsGrid4'); if(!host) return;
     var e=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
@@ -6497,7 +6523,7 @@ window.SVM_BARCODES={"E-1":{"kw":"REFILL","nm":"레몬 키링","code":"209211110
         +'<div class="gd-grid">'+c.items.map(function(g,gi){
           return '<div class="gd-card"><div class="q">'+e(g.q)+'</div><div class="kw">'+e(g.kw)+'</div>'
             +'<div class="im"><img alt="'+e(g.nm)+'" src="'+src(g.nm)+'"></div>'
-            +'<div class="nm"><b>'+e(g.nm)+'</b><span class="sv">10,000 V</span></div>'+bcBlock(c.cat+'-'+(gi+1), g, e)+'</div>';
+            +'<div class="nm"><b>'+e(g.nm)+'</b><span class="sv">10,000 V</span></div>'+(SVM_QTY[g.nm]?'<div class="gd-qty"><span>발주 수량</span><b>'+SVM_QTY[g.nm]+'개</b></div>':'')+bcBlock(c.cat+'-'+(gi+1), g, e)+'</div>';
         }).join('')+'</div></div>';
     }).join('');
   }
