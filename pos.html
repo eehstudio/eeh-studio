@@ -35,7 +35,6 @@
   .cust .chk span i{font-style:normal;margin-right:5px}
   .cust input[type=text]{width:100%;border:none;border-bottom:1.5px solid var(--ink);font-family:var(--small);font-size:16px;padding:6px 0;outline:none;background:transparent;margin-top:6px}
   .goods{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-  .goods .g .bcn{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3);margin-top:4px}
   .g{border:1.5px solid var(--line);background:#fff;padding:12px 12px 10px;cursor:pointer;transition:.15s;position:relative}
   .g:hover{border-color:var(--ink)}
   .g.on{border-color:var(--red);box-shadow:inset 0 0 0 1.5px var(--red)}
@@ -159,7 +158,7 @@
 </symbol></svg></div>
 <div class="top">
   <span class="lg"><svg viewBox="0 0 2182.59 859.312"><use href="#svm-logo"/></svg></span>
-  <div class="t">COUNTER POS · SV CHECKOUT<small>VALUE 바코드 스캔 → 굿즈 태그 바코드 스캔 또는 선택(2개 · 20,000 VALUE) → 결제 → 80mm 영수증 인쇄 (측정 결과 + 구매 내역)</small></div>
+  <div class="t">COUNTER POS · SV CHECKOUT<small>VALUE 바코드 스캔 → 굿즈 선택(2개 · 20,000 VALUE) → 결제 → 80mm 영수증 인쇄 (측정 결과 + 구매 내역)</small></div>
   <button class="btn" id="resetBtn" type="button">새 손님</button>
 </div>
 
@@ -167,9 +166,9 @@
   <div>
     <div class="box scan">
       <h2>1 · SCAN VALUE BARCODE</h2>
-      <input id="scanIn" placeholder="바코드 스캔 (VALUE · 태그)" autocomplete="off" spellcheck="false">
-      <div class="hint">앱 마지막 화면의 VALUE 바코드와 굿즈 행택의 바코드(EAN-13 · 2 0921…)를 같은 칸에서 스캔합니다. 순서는 상관없고, 스캔할 때마다 칸은 자동으로 비워집니다. VALUE 코드 하나에 유형 · 20문항 체크 · 나이대 · 지역 · 측정 금액이 들어 있어 영수증을 그대로 복원합니다.</div>
-      <div class="demo"><button type="button" data-demo="SVM-C-38CE7-20-340">샘플 · CARE 34,000</button><button type="button" data-demo="SVM-E-0001F-11-95">샘플 · GREEN 9,500</button><button type="button" data-demo="SVM-A-FFFFF-40-630">샘플 · 전부 체크 63,000</button></div>
+      <input id="scanIn" placeholder="바코드를 스캔하세요 (SVM-…)" autocomplete="off" spellcheck="false">
+      <div class="hint">앱 마지막 화면의 바코드를 스캐너로 읽거나, 코드를 붙여넣고 Enter. 코드 하나에 유형 · 20문항 체크 · 나이대 · 지역 · 성별 · 측정 금액이 들어 있어 영수증을 그대로 복원합니다.</div>
+      <div class="demo"><button type="button" data-demo="SVM-C-38CE7-201-340">샘플 · CARE 34,000</button><button type="button" data-demo="SVM-E-0001F-110-95">샘플 · GREEN 9,500</button><button type="button" data-demo="SVM-A-FFFFF-402-630">샘플 · 전부 체크 63,000</button></div>
     </div>
     <div class="box cust">
       <h2>2 · CUSTOMER · 측정 결과</h2>
@@ -178,7 +177,7 @@
   </div>
 
   <div class="box">
-    <h2>3 · GOODS · 태그 스캔 또는 선택 · 2개까지 (개당 10,000 VALUE · 카테고리 무관)</h2>
+    <h2>3 · GOODS · 굿즈 2개까지 선택 (개당 10,000 VALUE · 카테고리 무관)</h2>
     <div class="goods" id="goods"></div>
   </div>
 
@@ -260,11 +259,8 @@
     {c:'COMMUNITY',k:'LOCAL',n:'노란 감자 동전지갑',q:'전통시장 / 지역화폐'},{c:'COMMUNITY',k:'FAIR',n:'가지 동전지갑',q:'사회적기업·협동조합'},{c:'COMMUNITY',k:'TOGETHER',n:'찹쌀 경단 동전지갑',q:'동네 청소·마을 가꾸기'},{c:'COMMUNITY',k:'VOICE',n:'고추 키링',q:'지역 설문·공청회'}
   ];
   var SHORT = ['텀블러 사용','대중교통·도보','분리배출','다회용기','잔반 없이','병원 동행','이웃 돕기','아이 돌봄','스마트폰 안내','헌혈','미리 결제','중고 나눔','재능 나눔','기부','봉사활동','사회적기업','전통시장','지역화폐','동네 청소','공청회 참여'];
-  var AGES=['10대','20대','30대','40대','50대','60대+'], REGIONS=['서울','경기 · 인천','강원','충청','전라','경상','제주','해외'];
+  var AGES=['10대','20대','30대','40대','50대','60대+'], REGIONS=['서울','경기 · 인천','강원','충청','전라','경상','제주','해외'], GENDERS=['남자','여자','기타'];
   var REWARD=20000, PRICE=10000, MAXQ=2;
-  // 굿즈 행택 바코드 (EAN-13 · GOODS 순서와 같음) — 대시보드 굿즈 카드와 같은 번호
-  var GOODS_BC = ["2092111100005", "2092112100004", "2092113100003", "2092114100002", "2092121100002", "2092122100001", "2092123100000", "2092124100009", "2092131100009", "2092132100008", "2092133100007", "2092134100006", "2092141100006", "2092142100005", "2092143100004", "2092144100003"];
-  GOODS.forEach(function(g,i){ g.bc = GOODS_BC[i]; });
   var MNM = [];
   var cust=null, picked=[];
   function fmt(n){ return Number(n||0).toLocaleString('ko-KR'); }
@@ -272,13 +268,13 @@
   // ===== 바코드 페이로드 파서: SVM-<T>-<HEX5>-<A><R>-<amt/100> =====
   function parsePayload(s){
     s=(s||'').trim().toUpperCase();
-    var m=/^SVM-([ECSLA])-([0-9A-F]{5})-([0-9])([0-9])-([0-9]{1,4})$/.exec(s); if(!m) return null;
+    var m=/^SVM-([ECSLA])-([0-9A-F]{5})-([0-9])([0-9])([0-9])?-([0-9]{1,4})$/.exec(s); if(!m) return null;
     var mask=parseInt(m[2],16), checks=[], counts=[0,0,0,0], sv=[0,0,0,0], amount=0, total=0;
     for(var i=0;i<20;i++){ var on=!!(mask&(1<<i)); checks.push(on); if(on){ var ci=Math.floor(i/5), qi=i%5, v=Number(CATS[ci].sv[qi])||0; counts[ci]++; sv[ci]+=v; amount+=v; total++; } }
-    var enc=+m[5]*100; if(enc!==amount) amount=enc; // 바코드에 찍힌 금액을 우선(문항 단가가 바뀐 경우 대비)
+    var enc=+m[6]*100; if(enc!==amount) amount=enc; // 바코드에 찍힌 금액을 우선(문항 단가가 바뀐 경우 대비)
     var tc=m[1], typeIdx={E:0,C:1,S:2,L:3,A:4}[tc];
     var T = tc==='A' ? ALLROUND : CATS[typeIdx];
-    return {payload:s, tc:tc, typeIdx:typeIdx, type:T, mask:mask, checks:checks, counts:counts, catSv:sv, amount:amount, total:total, age:AGES[+m[3]]||'', region:REGIONS[+m[4]]||'', name:''};
+    return {payload:s, tc:tc, typeIdx:typeIdx, type:T, mask:mask, checks:checks, counts:counts, catSv:sv, amount:amount, total:total, age:AGES[+m[3]]||'', region:REGIONS[+m[4]]||'', gender:(m[5]!==undefined?GENDERS[+m[5]]:'')||'', name:''};
   }
 
   // ===== 스캔 =====
@@ -286,10 +282,7 @@
   scanIn.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); loadCode(scanIn.value); } });
   document.querySelectorAll('[data-demo]').forEach(function(b){ b.addEventListener('click', function(){ scanIn.value=b.getAttribute('data-demo'); loadCode(scanIn.value); }); });
   function loadCode(code){
-    var raw=String(code||'').replace(/\s+/g,'');
-    if(/^\d{13}$/.test(raw)){ scanIn.value=''; addGoodsByCode(raw); return; }
     var c=parsePayload(code);
-    scanIn.value='';
     if(!c){ document.getElementById('custBody').innerHTML='<div class="empty" style="color:var(--red);border-color:var(--red)">읽을 수 없는 코드입니다: '+(code||'')+'<br>형식 SVM-유형-문항HEX5-나이지역-금액</div>'; cust=null; renderCart(); return; }
     cust=c; renderCust(); renderCart(); document.getElementById('rcSt').textContent='';
   }
@@ -300,7 +293,7 @@
       '<div class="big">'+fmt(c.amount)+'<small>SV · MY SOCIAL VALUE</small></div>'
       +'<div class="row"><span>SV TYPE</span><b>'+T.type+'</b></div>'
       +'<div class="row"><span>CHECKED</span><b>'+c.total+' / 20</b></div>'
-      +'<div class="row"><span>나이대 · 지역</span><b>'+([c.age,c.region].filter(Boolean).join(' · ')||'—')+'</b></div>'
+      +'<div class="row"><span>성별 · 나이대 · 지역</span><b>'+([c.gender,c.age,c.region].filter(Boolean).join(' · ')||'—')+'</b></div>'
       +'<div class="row"><span>CODE</span><b style="font-family:var(--mono);font-weight:400;font-size:11px">'+c.payload+'</b></div>'
       +'<div class="chk">'+chk+'</div>'
       +'<label style="display:block;margin-top:14px;font-size:11px;color:var(--ink-3)">영수증에 찍힐 이름 (선택 · 바코드에는 이름이 없어 직접 입력)</label><input type="text" id="custName" maxlength="12" placeholder="GUEST">';
@@ -309,30 +302,14 @@
 
   // ===== 굿즈 =====
   var goodsEl=document.getElementById('goods');
-  goodsEl.innerHTML=GOODS.map(function(g,i){ return '<div class="g" data-i="'+i+'"><div class="cat">'+g.c+'</div><div class="kw">'+g.k+'</div><div class="nm">'+g.n+'</div><div class="q">'+g.q+'</div><div class="pr">10,000 VALUE</div><div class="bcn">'+g.bc+'</div></div>'; }).join('');
+  goodsEl.innerHTML=GOODS.map(function(g,i){ return '<div class="g" data-i="'+i+'"><div class="cat">'+g.c+'</div><div class="kw">'+g.k+'</div><div class="nm">'+g.n+'</div><div class="q">'+g.q+'</div><div class="pr">10,000 VALUE</div></div>'; }).join('');
   goodsEl.addEventListener('click', function(e){
     var el=e.target.closest('.g'); if(!el) return; var i=+el.getAttribute('data-i');
     var at=picked.indexOf(i);
     if(at>=0) picked.splice(at,1); else { if(picked.length>=MAXQ){ flash('굿즈는 2개까지'); return; } picked.push(i); }
     goodsEl.querySelectorAll('.g').forEach(function(x){ x.classList.toggle('on', picked.indexOf(+x.getAttribute('data-i'))>=0); });
-    renderCart(); if(window.matchMedia && matchMedia('(pointer:fine)').matches) scanIn.focus();   // 태블릿에서는 화면 키보드가 뜨지 않게 생략
-  });
-  function addGoodsByCode(code){
-    var i=GOODS_BC.indexOf(code);
-    if(i<0){ flash('등록되지 않은 바코드 · '+code); return; }
-    if(picked.length>=MAXQ){ flash('굿즈는 2개까지'); return; }
-    picked.push(i);
-    goodsEl.querySelectorAll('.g').forEach(function(x){ x.classList.toggle('on', picked.indexOf(+x.getAttribute('data-i'))>=0); });
-    flash('띡 · '+GOODS[i].k+' 담김');
     renderCart();
-  }
-  // 스캐너 입력이 항상 스캔 칸으로 들어가도록 (이름 입력 중일 때는 제외)
-  document.addEventListener('keydown', function(e){
-    var a=document.activeElement;
-    if(a===scanIn || (a && (a.tagName==='INPUT' || a.tagName==='TEXTAREA' || a.isContentEditable))) return;
-    if(e.ctrlKey || e.metaKey || e.altKey) return;
-    if(e.key.length===1) scanIn.focus();   // 스캐너는 숫자·문자를 먼저 보내므로 Enter 전에 칸으로 이동
-  }, true);
+  });
   function flash(t){ var s=document.getElementById('rcSt'); s.textContent=t; setTimeout(function(){ if(s.textContent===t) s.textContent=''; },1400); }
   function renderCart(){
     var sub=picked.length*PRICE, bal=REWARD-sub;
@@ -362,11 +339,13 @@
         var yr=d.querySelector('.yr');
         if(yr){ var hd=d.createElement('div'); hd.style.cssText='text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.2em;padding:6px 0 7px;border-bottom:1px solid #000'; hd.textContent='CSES OFFICIAL VALUE RECEIPT'; yr.parentNode.insertBefore(hd, yr);
           var who=d.createElement('div'); who.style.cssText='display:flex;gap:10px;align-items:center;border-bottom:1px solid #000;padding:8px 1px';
-          who.innerHTML='<div style="flex:1"><div style="font-size:15px;font-weight:700;letter-spacing:-.02em">'+(c.name||'GUEST')+'</div><div style="font-size:8.5px;letter-spacing:.08em;line-height:1.6;color:rgba(0,0,0,.65)">'+([c.age,c.region].filter(Boolean).join(' · ')||'')+(c.age||c.region?'<br>':'')+'VALUE MAKER · '+T.short+'</div></div>';
+          who.innerHTML='<div style="flex:1"><div style="font-size:15px;font-weight:700;letter-spacing:-.02em">'+(c.name||'GUEST')+'</div><div style="font-size:8.5px;letter-spacing:.08em;line-height:1.6;color:rgba(0,0,0,.65)">'+([c.gender,c.age,c.region].filter(Boolean).join(' · ')||'')+(c.gender||c.age||c.region?'<br>':'')+'VALUE MAKER · '+T.short+'</div></div>';
           yr.parentNode.insertBefore(who, yr.nextSibling); }
-        // 20문항
-        d.querySelectorAll('.col li').forEach(function(li,i){ var ci=Math.floor(i/5), qi=i%5; var on=c.checks[i]; var v=Number(CATS[ci].sv[qi])||0;
-          li.className=on?'on':'off'; li.querySelector('.h').innerHTML=on?'&#9829;':'&#9825;'; li.querySelector('.t').textContent=SHORT[i]; li.querySelector('.v').innerHTML=on?'+'+fmt(v):'&#183;'; });
+        // 20문항 전체 (체크 = 진하게 + 금액 / 미체크 = 연하게 + 0)
+        var st2=d.createElement('style'); st2.textContent='.list.full{display:block}.list.full ul{list-style:none;margin:0;padding:0}.list.full li{display:flex;align-items:flex-start;gap:5px;font-size:9px;line-height:1.5;padding:3px 0;border-bottom:1px dotted rgba(0,0,0,.18);white-space:normal}.list.full li .h{flex:0 0 10px}.list.full li .n{flex:0 0 16px;font-size:8px;letter-spacing:.04em}.list.full li .t{flex:1;min-width:0}.list.full li .v{flex:0 0 auto;min-width:44px;text-align:right;font-variant-numeric:tabular-nums}.list.full li.on{font-weight:700;color:#000}.list.full li.off{color:rgba(0,0,0,.38);font-weight:400}.list.full .cat{font-size:8px;letter-spacing:.16em;font-weight:700;padding:7px 0 2px;color:#000;border-bottom:1px solid #000}'; d.head.appendChild(st2);
+        var list=d.querySelector('.list'); if(list){ list.className='list full'; var ul=d.createElement('ul'); var html='';
+          CATS.forEach(function(cat,ci){ html+='<li class="cat" style="display:block">'+cat.en+' · '+cat.name+'</li>'; cat.items.forEach(function(q,qi){ var i=ci*5+qi, on=c.checks[i], v=Number(cat.sv[qi])||0; html+='<li class="'+(on?'on':'off')+'"><span class="h">'+(on?'&#9829;':'&#9825;')+'</span><span class="n">'+(i+1<10?'0':'')+(i+1)+'</span><span class="t">'+q+'</span><span class="v">'+(on?'+'+fmt(v):'0')+'</span></li>'; }); });
+          ul.innerHTML=html; list.innerHTML=''; list.appendChild(ul); }
         var kv=d.querySelectorAll('.kv b'); if(kv[0]) kv[0].textContent=c.total+' / 20'; if(kv[1]) kv[1].textContent=fmt(c.amount)+' SV';
         var kvb=d.querySelector('.kv.big'); if(kvb){ var mid=d.createElement('div'); mid.style.cssText='font-size:9.5px;line-height:1.75;text-align:center;padding:9px 6px 10px;border-top:1px dashed #000;border-bottom:1px dashed #000;margin-top:8px'; mid.innerHTML='측정은 단순한 숫자가 아닙니다.<br>당신이 만든 온기를 세상을 향해 증명하는 일입니다.'; kvb.parentNode.insertBefore(mid, kvb.nextSibling); }
         d.querySelectorAll('.bar').forEach(function(b){ var sp=b.querySelectorAll('span'); if(sp[0]&&sp[0].textContent==='SV TYPE'&&sp[2]) sp[2].textContent=((c.tc==='A')?5:(c.typeIdx+1))+' OF 5'; });
