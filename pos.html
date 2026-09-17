@@ -230,7 +230,7 @@
       <div class="done" id="doneBox">
         <div class="k">CHECKOUT COMPLETE</div>
         <div class="big">결제 완료 <kbd>Enter</kbd> 인쇄</div>
-        <p>영수증이 준비됐습니다. Enter 키(또는 아래 버튼)로 인쇄창을 여세요. 다음 손님은 굿즈를 누르거나 새 바코드를 스캔하면 자동으로 시작됩니다.</p>
+        <p>영수증이 준비됐습니다. Enter 키(또는 아래 버튼)로 인쇄창을 여세요. 다음 손님은 굿즈를 누르거나 새 바코드를 스캔하면 자동으로 시작됩니다.<br><span style="color:var(--ink-3)">인쇄창 설정: 용지 크기는 프린터의 <b>롤(연속) 용지 80mm</b> 또는 가장 긴 80mm 규격, 여백 없음, 배율 100%, 머리글/바닥글 끄기.</span></p>
         <div class="qrrow"><div class="qr" id="rcQr"></div><div class="tx"><b>휴대폰으로 영수증 받기</b>손님이 이 QR을 카메라로 찍으면 앱에서 같은 영수증을 보고 이미지로 저장할 수 있어요.</div></div>
       </div>
       <div class="st" id="rcSt"></div>
@@ -2757,7 +2757,17 @@ var qrcode = function() {
       scanIn.value=''; scanIn.focus();
     });
   }
-  function doPrint(){ var f=document.getElementById('rcF'); if(!f.srcdoc||f.srcdoc==='<html></html>') return; try{ f.contentWindow.focus(); f.contentWindow.print(); }catch(e){ window.print(); } }
+  // 인쇄: 영수증 실제 길이를 재서 @page 크기를 80mm x (길이)mm 한 장으로 고정 → 여러 장으로 끊기지 않음
+  function preparePrint(d){
+    try{
+      var paper=d.querySelector('.paper')||d.body; var pxW=paper.getBoundingClientRect().width||360; var pxH=Math.max(paper.scrollHeight, d.body.scrollHeight);
+      var z=(80*96/25.4)/pxW; var mm=Math.ceil(pxH*z*25.4/96)+4;
+      var st=d.getElementById('svmPrintPage')||d.createElement('style'); st.id='svmPrintPage';
+      st.textContent='@page{size:80mm '+mm+'mm;margin:0}@media print{html,body{width:80mm;margin:0;padding:0;background:#fff;overflow:visible}.paper{width:'+Math.round(pxW)+'px!important;zoom:'+z.toFixed(4)+';box-shadow:none!important;page-break-inside:avoid;break-inside:avoid}.paper *{page-break-inside:avoid}}';
+      d.head.appendChild(st); return mm;
+    }catch(e){ return 0; }
+  }
+  function doPrint(){ var f=document.getElementById('rcF'); if(!f.srcdoc||f.srcdoc==='<html></html>') return; try{ var d=f.contentDocument; var mm=preparePrint(d); flash('인쇄 · 80 x '+mm+'mm 한 장'); f.contentWindow.focus(); f.contentWindow.print(); }catch(e){ window.print(); } }
   document.getElementById('printBtn').addEventListener('click', doPrint);
   document.getElementById('againBtn').addEventListener('click', function(){ if(cust) printReceipt(); });
   function newCustomer(keepScan){
