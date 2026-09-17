@@ -35,7 +35,6 @@
   .cust .chk span i{font-style:normal;margin-right:5px}
   .cust input[type=text]{width:100%;border:none;border-bottom:1.5px solid var(--ink);font-family:var(--small);font-size:16px;padding:6px 0;outline:none;background:transparent;margin-top:6px}
   .goods{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-  .goods .g .bcn{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3);margin-top:4px}
   .g{border:1.5px solid var(--line);background:#fff;padding:12px 12px 10px;cursor:pointer;transition:.15s;position:relative}
   .g:hover{border-color:var(--ink)}
   .g.on{border-color:var(--red);box-shadow:inset 0 0 0 1.5px var(--red)}
@@ -58,6 +57,10 @@
   .rc .st{font-family:var(--title);font-weight:500;font-size:9px;letter-spacing:.16em;color:var(--red);margin-bottom:8px;min-height:12px}
   .hid{position:absolute;width:0;height:0;overflow:hidden}
   @media(max-width:1100px){.wrap{grid-template-columns:1fr}}
+  .empty.used{color:var(--red);border-color:var(--red);line-height:1.8}
+  .empty.used b{font-size:15px}
+  .empty.used span{font-size:11px;color:var(--ink-3)}
+  .empty.used .btn{margin-top:10px}
   @media print{body *{visibility:hidden}.rc,.rc *{visibility:visible}.rc{position:absolute;left:0;top:0;width:80mm}.rc .acts,.rc .st{display:none}}
 </style>
 <style>
@@ -159,7 +162,7 @@
 </symbol></svg></div>
 <div class="top">
   <span class="lg"><svg viewBox="0 0 2182.59 859.312"><use href="#svm-logo"/></svg></span>
-  <div class="t">COUNTER POS · SV CHECKOUT<small>VALUE 바코드 스캔 → 굿즈 태그 바코드 스캔 또는 선택(2개 · 20,000 VALUE) → 결제 → 80mm 영수증 인쇄 (측정 결과 + 구매 내역)</small></div>
+  <div class="t">COUNTER POS · SV CHECKOUT<small>VALUE 바코드 스캔 → 굿즈 선택(2개 · 20,000 VALUE) → 결제 → 80mm 영수증 인쇄 (측정 결과 + 구매 내역)</small></div>
   <button class="btn" id="resetBtn" type="button">새 손님</button>
 </div>
 
@@ -167,9 +170,9 @@
   <div>
     <div class="box scan">
       <h2>1 · SCAN VALUE BARCODE</h2>
-      <input id="scanIn" placeholder="바코드 스캔 (VALUE · 태그)" autocomplete="off" spellcheck="false">
-      <div class="hint">앱 마지막 화면의 VALUE 바코드와 굿즈 행택의 바코드(EAN-13 · 2 0921…)를 같은 칸에서 스캔합니다. 순서는 상관없고, 스캔할 때마다 칸은 자동으로 비워집니다. VALUE 코드 하나에 유형 · 20문항 체크 · 나이대 · 지역 · 성별 · 측정 금액이 들어 있어 영수증을 그대로 복원합니다.</div>
-      <div class="demo"><button type="button" data-demo="SVM-C-38CE7-201-340">샘플 · CARE 34,000</button><button type="button" data-demo="SVM-E-0001F-110-95">샘플 · GREEN 9,500</button><button type="button" data-demo="SVM-A-FFFFF-402-630">샘플 · 전부 체크 63,000</button></div>
+      <input id="scanIn" placeholder="바코드를 스캔하세요 (SVM-…)" autocomplete="off" spellcheck="false">
+      <div class="hint">앱 마지막 화면의 바코드를 스캐너로 읽거나, 코드를 붙여넣고 Enter. 코드 하나에 유형 · 20문항 체크 · 나이대 · 지역 · 성별 · 측정 금액 · 발급코드가 들어 있어 영수증을 그대로 복원합니다.<br>결제된 바코드는 이 기기에 기록되어 재사용이 막힙니다 (48시간 보관) · 결제 완료 <b id="usedCnt">0</b>건</div>
+      <div class="demo"><button type="button" data-demo="SVM-C-38CE7-201-340-K7X2">샘플 · CARE 34,000</button><button type="button" data-demo="SVM-E-0001F-110-95-Q4MD">샘플 · GREEN 9,500</button><button type="button" data-demo="SVM-A-FFFFF-402-630-B9ZP">샘플 · 전부 체크 63,000</button></div>
     </div>
     <div class="box cust">
       <h2>2 · CUSTOMER · 측정 결과</h2>
@@ -178,7 +181,7 @@
   </div>
 
   <div class="box">
-    <h2>3 · GOODS · 태그 스캔 또는 선택 · 2개까지 (개당 10,000 VALUE · 카테고리 무관)</h2>
+    <h2>3 · GOODS · 굿즈 2개까지 선택 (개당 10,000 VALUE · 카테고리 무관)</h2>
     <div class="goods" id="goods"></div>
   </div>
 
@@ -262,36 +265,46 @@
   var SHORT = ['텀블러 사용','대중교통·도보','분리배출','다회용기','잔반 없이','병원 동행','이웃 돕기','아이 돌봄','스마트폰 안내','헌혈','미리 결제','중고 나눔','재능 나눔','기부','봉사활동','사회적기업','전통시장','지역화폐','동네 청소','공청회 참여'];
   var AGES=['10대','20대','30대','40대','50대','60대+'], REGIONS=['서울','경기 · 인천','강원','충청','전라','경상','제주','해외'], GENDERS=['남자','여자','기타'];
   var REWARD=20000, PRICE=10000, MAXQ=2;
-  // 굿즈 행택 바코드 (EAN-13 · GOODS 순서와 같음) — 대시보드 굿즈 카드와 같은 번호
-  var GOODS_BC = ["2092111100005", "2092112100004", "2092113100003", "2092114100002", "2092121100002", "2092122100001", "2092123100000", "2092124100009", "2092131100009", "2092132100008", "2092133100007", "2092134100006", "2092141100006", "2092142100005", "2092143100004", "2092144100003"];
-  GOODS.forEach(function(g,i){ g.bc = GOODS_BC[i]; });
   var MNM = [];
   var cust=null, picked=[];
   function fmt(n){ return Number(n||0).toLocaleString('ko-KR'); }
 
-  // ===== 바코드 페이로드 파서: SVM-<T>-<HEX5>-<A><R>-<amt/100> =====
+  // ===== 사용된 바코드 기록 (이 기기 브라우저에 저장 · 48시간 후 자동 정리) =====
+  var USED_KEY='svm_used_v1', USED_TTL=48*3600*1000;
+  function loadUsed(){ var u={}; try{ u=JSON.parse(localStorage.getItem(USED_KEY)||'{}')||{}; }catch(e){ u={}; } var now=Date.now(), ch=false; Object.keys(u).forEach(function(k){ if(now-u[k]>USED_TTL){ delete u[k]; ch=true; } }); if(ch) saveUsed(u); return u; }
+  function saveUsed(u){ try{ localStorage.setItem(USED_KEY, JSON.stringify(u)); }catch(e){} }
+  function markUsed(payload){ var u=loadUsed(); if(!u[payload]){ u[payload]=Date.now(); saveUsed(u); } renderUsedCount(); }
+  function usedAt(payload){ var u=loadUsed(); return u[payload]||0; }
+  function renderUsedCount(){ var el=document.getElementById('usedCnt'); if(el) el.textContent=Object.keys(loadUsed()).length; }
+  function hhmm(ts){ var d=new Date(ts); return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+
+  // ===== 바코드 페이로드 파서: SVM-<T>-<HEX5>-<A><R><G>-<amt/100>-<발급코드4> =====
   function parsePayload(s){
     s=(s||'').trim().toUpperCase();
-    var m=/^SVM-([ECSLA])-([0-9A-F]{5})-([0-9])([0-9])([0-9])?-([0-9]{1,4})$/.exec(s); if(!m) return null;
+    var m=/^SVM-([ECSLA])-([0-9A-F]{5})-([0-9])([0-9])([0-9])?-([0-9]{1,4})-([0-9A-Z]{4})$/.exec(s); if(!m) return null;
     var mask=parseInt(m[2],16), checks=[], counts=[0,0,0,0], sv=[0,0,0,0], amount=0, total=0;
     for(var i=0;i<20;i++){ var on=!!(mask&(1<<i)); checks.push(on); if(on){ var ci=Math.floor(i/5), qi=i%5, v=Number(CATS[ci].sv[qi])||0; counts[ci]++; sv[ci]+=v; amount+=v; total++; } }
     var enc=+m[6]*100; if(enc!==amount) amount=enc; // 바코드에 찍힌 금액을 우선(문항 단가가 바뀐 경우 대비)
     var tc=m[1], typeIdx={E:0,C:1,S:2,L:3,A:4}[tc];
     var T = tc==='A' ? ALLROUND : CATS[typeIdx];
-    return {payload:s, tc:tc, typeIdx:typeIdx, type:T, mask:mask, checks:checks, counts:counts, catSv:sv, amount:amount, total:total, age:AGES[+m[3]]||'', region:REGIONS[+m[4]]||'', gender:(m[5]!==undefined?GENDERS[+m[5]]:'')||'', name:''};
+    return {payload:s, tc:tc, typeIdx:typeIdx, type:T, mask:mask, checks:checks, counts:counts, catSv:sv, amount:amount, total:total, age:AGES[+m[3]]||'', region:REGIONS[+m[4]]||'', gender:(m[5]!==undefined?GENDERS[+m[5]]:'')||'', nonce:m[7], name:''};
   }
 
   // ===== 스캔 =====
   var scanIn=document.getElementById('scanIn');
   scanIn.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); loadCode(scanIn.value); } });
   document.querySelectorAll('[data-demo]').forEach(function(b){ b.addEventListener('click', function(){ scanIn.value=b.getAttribute('data-demo'); loadCode(scanIn.value); }); });
-  function loadCode(code){
-    var raw=String(code||'').replace(/\s+/g,'');
-    if(/^\d{13}$/.test(raw)){ scanIn.value=''; addGoodsByCode(raw); return; }
+  function loadCode(code, force){
     var c=parsePayload(code);
-    scanIn.value='';
-    if(!c){ document.getElementById('custBody').innerHTML='<div class="empty" style="color:var(--red);border-color:var(--red)">읽을 수 없는 코드입니다: '+(code||'')+'<br>형식 SVM-유형-문항HEX5-나이지역-금액</div>'; cust=null; renderCart(); return; }
-    cust=c; renderCust(); renderCart(); document.getElementById('rcSt').textContent='';
+    if(!c){ document.getElementById('custBody').innerHTML='<div class="empty" style="color:var(--red);border-color:var(--red)">읽을 수 없는 코드입니다: '+(code||'')+'<br>형식 SVM-유형-문항HEX5-나이지역성별-금액-발급코드(4자리)<br><span style="font-size:11px">발급코드가 없는 이전 버전 바코드는 앱을 새로고침해 다시 발급받아야 합니다.</span></div>'; cust=null; renderCart(); return; }
+    var at=usedAt(c.payload);
+    if(at && !force){
+      cust=null; renderCart();
+      document.getElementById('custBody').innerHTML='<div class="empty used"><b>이미 사용된 바코드입니다</b><br>'+hhmm(at)+'에 이 기기에서 결제 완료 · '+c.payload+'<br><span>같은 바코드는 한 번만 결제할 수 있습니다. 영수증 재출력이 필요하면 아래 버튼으로 다시 불러오세요.</span><br><button type="button" class="btn" id="forceBtn">스태프 확인 · 그래도 불러오기</button></div>';
+      document.getElementById('forceBtn').addEventListener('click', function(){ loadCode(code, true); flash('중복 사용 · 스태프 확인으로 진행'); });
+      return;
+    }
+    cust=c; cust.reused=!!at; renderCust(); renderCart(); document.getElementById('rcSt').textContent='';
   }
   function renderCust(){
     var c=cust, T=c.type, mi=(c.tc==='A')?4:c.typeIdx;
@@ -309,30 +322,14 @@
 
   // ===== 굿즈 =====
   var goodsEl=document.getElementById('goods');
-  goodsEl.innerHTML=GOODS.map(function(g,i){ return '<div class="g" data-i="'+i+'"><div class="cat">'+g.c+'</div><div class="kw">'+g.k+'</div><div class="nm">'+g.n+'</div><div class="q">'+g.q+'</div><div class="pr">10,000 VALUE</div><div class="bcn">'+g.bc+'</div></div>'; }).join('');
+  goodsEl.innerHTML=GOODS.map(function(g,i){ return '<div class="g" data-i="'+i+'"><div class="cat">'+g.c+'</div><div class="kw">'+g.k+'</div><div class="nm">'+g.n+'</div><div class="q">'+g.q+'</div><div class="pr">10,000 VALUE</div></div>'; }).join('');
   goodsEl.addEventListener('click', function(e){
     var el=e.target.closest('.g'); if(!el) return; var i=+el.getAttribute('data-i');
     var at=picked.indexOf(i);
     if(at>=0) picked.splice(at,1); else { if(picked.length>=MAXQ){ flash('굿즈는 2개까지'); return; } picked.push(i); }
     goodsEl.querySelectorAll('.g').forEach(function(x){ x.classList.toggle('on', picked.indexOf(+x.getAttribute('data-i'))>=0); });
-    renderCart(); if(window.matchMedia && matchMedia('(pointer:fine)').matches) scanIn.focus();   // 태블릿에서는 화면 키보드가 뜨지 않게 생략
-  });
-  function addGoodsByCode(code){
-    var i=GOODS_BC.indexOf(code);
-    if(i<0){ flash('등록되지 않은 바코드 · '+code); return; }
-    if(picked.length>=MAXQ){ flash('굿즈는 2개까지'); return; }
-    picked.push(i);
-    goodsEl.querySelectorAll('.g').forEach(function(x){ x.classList.toggle('on', picked.indexOf(+x.getAttribute('data-i'))>=0); });
-    flash('띡 · '+GOODS[i].k+' 담김');
     renderCart();
-  }
-  // 스캐너 입력이 항상 스캔 칸으로 들어가도록 (이름 입력 중일 때는 제외)
-  document.addEventListener('keydown', function(e){
-    var a=document.activeElement;
-    if(a===scanIn || (a && (a.tagName==='INPUT' || a.tagName==='TEXTAREA' || a.isContentEditable))) return;
-    if(e.ctrlKey || e.metaKey || e.altKey) return;
-    if(e.key.length===1) scanIn.focus();   // 스캐너는 숫자·문자를 먼저 보내므로 Enter 전에 칸으로 이동
-  }, true);
+  });
   function flash(t){ var s=document.getElementById('rcSt'); s.textContent=t; setTimeout(function(){ if(s.textContent===t) s.textContent=''; },1400); }
   function renderCart(){
     var sub=picked.length*PRICE, bal=REWARD-sub;
@@ -344,7 +341,7 @@
 
   // ===== 결제 → 영수증 =====
   var RCPT_HTML=''; try{ RCPT_HTML=decodeURIComponent(escape(atob(window.RCPT_B64||''))); }catch(e){ try{ RCPT_HTML=new TextDecoder().decode(Uint8Array.from(atob(window.RCPT_B64||''),function(c){return c.charCodeAt(0)})); }catch(e2){} }
-  document.getElementById('payBtn').addEventListener('click', function(){ if(!cust) return; printReceipt(); });
+  document.getElementById('payBtn').addEventListener('click', function(){ if(!cust) return; markUsed(cust.payload); printReceipt(); });
   document.getElementById('printBtn').addEventListener('click', function(){ var f=document.getElementById('rcF'); try{ f.contentWindow.focus(); f.contentWindow.print(); }catch(e){ window.print(); } });
   document.getElementById('againBtn').addEventListener('click', function(){ printReceipt(); });
   document.getElementById('resetBtn').addEventListener('click', function(){ cust=null; picked=[]; scanIn.value=''; document.getElementById('custBody').innerHTML='<div class="empty">바코드를 스캔하면 측정 결과가 여기 표시됩니다</div>'; goodsEl.querySelectorAll('.g').forEach(function(x){ x.classList.remove('on'); }); renderCart(); var f=document.getElementById('rcF'); f.srcdoc='<html></html>'; f.style.height='0'; document.getElementById('printBtn').disabled=true; document.getElementById('againBtn').disabled=true; document.getElementById('rcSt').textContent=''; scanIn.focus(); });
@@ -391,7 +388,7 @@
     };
     f.srcdoc = RCPT_HTML;
   }
-  renderCart(); scanIn.focus();
+  renderCart(); renderUsedCount(); scanIn.focus();
 </script>
 </body>
 </html>
