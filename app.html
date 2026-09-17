@@ -225,6 +225,10 @@
   .rv .rvbox iframe{display:block;width:100%;border:0;height:600px}
   .rv .sub{font-size:14px;line-height:1.7;color:var(--ink-2);margin-top:12px}
   .rv .note{font-size:11.5px;color:var(--ink-3);text-align:center}
+  .vt .cta{position:static;background:none;padding:18px 0 0}
+  .vt .staffrow{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .vt .staffrow span{grid-column:1/-1;font-family:var(--title);font-weight:500;font-size:8.5px;letter-spacing:.14em;color:var(--ink-3);text-align:center}
+  .vt .staffrow .btn{margin:0;padding:12px 8px;font-size:13px}
   .vt .lock{font-size:11.5px;line-height:1.7;color:var(--ink-2);text-align:center;border:1px dashed var(--ink-4);padding:10px 12px;margin-top:6px}
   .vt .restored{font-family:var(--title);font-weight:500;font-size:9px;letter-spacing:.14em;color:#fff;background:var(--red);padding:7px 10px;margin-top:10px;display:none}
   .vt .restored.on{display:block}
@@ -456,7 +460,7 @@
         <div class="row"><span>영수증</span><b>20문항 전체 + 구매 굿즈가 함께 인쇄</b></div>
       </div>
       <div class="spec rise d5">바코드에 담긴 정보: <code id="specTxt"></code><br>숫자 16자리 = 유형 · 체크한 20문항 · 나이대 · 지역 · 성별 · 발급코드 · 검증숫자. 스캔이 안 되면 COUNTER에서 이 숫자를 그대로 입력하면 됩니다.</div>
-      <div class="cta"><div class="note">화면 밝기를 최대로 하면 스캔이 더 잘 돼요</div><div class="lock" id="lockNote">이 휴대폰에서는 한 번만 참여할 수 있어요.<br>결제 전까지 이 화면을 닫지 마세요 · 문제가 있으면 스태프에게 알려주세요.</div><button class="btn o" id="restartBtn" style="display:none">처음부터 다시 해보기</button></div>
+      <div class="cta"><div class="note">화면 밝기를 최대로 하면 스캔이 더 잘 돼요</div><div class="lock" id="lockNote">이 휴대폰에서는 한 번만 참여할 수 있어요.<br>결제 전까지 이 화면을 닫지 마세요 · 문제가 있으면 스태프에게 알려주세요.</div><div class="staffrow"><span>STAFF · 비밀번호 필요</span><button class="btn o" id="editBtn" type="button">답변 수정하기</button><button class="btn o" id="restartBtn" type="button">설문 다시하기</button></div></div>
     </div>
 
     <!-- 10 내 영수증 -->
@@ -472,7 +476,7 @@
   </div>
 </div>
 
-<div id="staff"><div class="card"><h4>STAFF ONLY · 참여 기록 초기화</h4><p>이 휴대폰의 발급 기록을 지우고 처음 화면으로 돌아갑니다. 이미 결제한 바코드는 POS에서 재사용이 막히니, 결제 전 재발급이 필요한 경우에만 사용하세요.</p><input type="tel" id="staffPin" inputmode="numeric" maxlength="4" placeholder="스태프 PIN 4자리" style="width:100%;font-size:18px;letter-spacing:.3em;text-align:center;padding:10px;border:1.5px solid var(--ink);background:#fff;margin-bottom:4px"><button class="btn r" id="staffReset" type="button">초기화하고 처음부터</button><button class="btn o" id="staffCancel" type="button">취소</button></div></div>
+<div id="staff"><div class="card"><h4 id="staffTitle">STAFF ONLY · 설문 다시하기</h4><p id="staffDesc">이 휴대폰의 발급 기록을 지우고 처음 화면으로 돌아갑니다. 이미 결제한 바코드는 POS에서 재사용이 막히니, 결제 전 재발급이 필요한 경우에만 사용하세요.</p><input type="tel" id="staffPin" inputmode="numeric" maxlength="4" placeholder="스태프 PIN 4자리" style="width:100%;font-size:18px;letter-spacing:.3em;text-align:center;padding:10px;border:1.5px solid var(--ink);background:#fff;margin-bottom:4px"><button class="btn r" id="staffReset" type="button">확인</button><button class="btn o" id="staffCancel" type="button">취소</button></div></div>
 
 <script>
   // 부모 대시보드의 @font-face(MADE Outer Sans · Pretendard)를 그대로 가져옴 — 폰트 중복 내장 없음
@@ -763,7 +767,7 @@ var ICONS = ["data:image/webp;base64,UklGRjQFAABXRUJQVlA4ICgFAABQIACdASqAAIAAPpE
     var ai=AGES.indexOf(profile.age), ri=REGIONS.indexOf(profile.region), gi=GENDERS.indexOf(profile.gender);
     var hex=('00000'+mask.toString(16).toUpperCase()).slice(-5);
     // 바코드 페이로드: SVM-<유형>-<20문항 비트 HEX5>-<나이대><지역><성별>-<금액/100>
-    var nonce=(result&&result.nonce)||svmNonce();
+    var nonce=(result&&/^\d{4}$/.test(String(result.nonce||'')))?result.nonce:svmNonce();
     var payload=svmEncode({tc:tc, mask:mask, ai:(ai<0?9:ai), ri:(ri<0?9:ri), gi:(gi<0?9:gi), nonce:nonce});
     result={amount:amount, catCounts:counts, catSv:sv, typeIdx:typeIdx, total:total, type:T, tc:tc, mask:mask, payload:payload, payloadFmt:svmFmt(payload), nonce:nonce, name:profile.name||'GUEST'};
   }
@@ -867,15 +871,32 @@ var ICONS = ["data:image/webp;base64,UklGRjQFAABXRUJQVlA4ICgFAABQIACdASqAAIAAPpE
     document.getElementById('restoredNote').classList.remove('on');
     if(syncQ20FromParent()){} renderCats(); go(0);
   }
-  document.getElementById('restartBtn').addEventListener('click', hardRestart);
+  var STAFF_MODE='restart';
+  function openStaff(mode){
+    STAFF_MODE=mode; var st=document.getElementById('staff');
+    document.getElementById('staffTitle').textContent = mode==='edit' ? 'STAFF ONLY · 답변 수정하기' : 'STAFF ONLY · 설문 다시하기';
+    document.getElementById('staffDesc').textContent = mode==='edit' ? '체크한 답변과 이름·성별·나이·지역은 그대로 두고 설문 화면으로 돌아갑니다. 수정이 끝나면 새 바코드가 발급되며, 이전 바코드는 결제에 쓰지 마세요.' : '이 휴대폰의 발급 기록을 지우고 처음 화면으로 돌아갑니다. 이미 결제한 바코드는 POS에서 재사용이 막히니, 결제 전 재발급이 필요한 경우에만 사용하세요.';
+    document.getElementById('staffReset').textContent = mode==='edit' ? '수정하러 가기' : '처음부터 다시';
+    var pin=document.getElementById('staffPin'); pin.value=''; pin.placeholder='스태프 PIN 4자리'; pin.style.borderColor='';
+    st.classList.add('on'); setTimeout(function(){ try{ pin.focus(); }catch(e){} },50);
+  }
+  function editAnswers(){
+    result.nonce=null; clearIssued();
+    document.getElementById('restoredNote').classList.remove('on');
+    document.getElementById('fName').value=profile.name||'';
+    document.querySelectorAll('.chips').forEach(function(g){ var f=g.getAttribute('data-f'); g.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b.textContent===profile[f]); }); });
+    renderCats(); go(1);
+  }
+  document.getElementById('restartBtn').addEventListener('click', function(){ openStaff('restart'); });
+  document.getElementById('editBtn').addEventListener('click', function(){ openStaff('edit'); });
   // 스태프 전용: 상단 로고를 2.5초 길게 누르면 초기화 창
   (function(){
     var st=document.getElementById('staff'), t=null;
-    function start(e){ clearTimeout(t); t=setTimeout(function(){ st.classList.add('on'); }, 2500); }
+    function start(e){ clearTimeout(t); t=setTimeout(function(){ openStaff('restart'); }, 2500); }
     function stop(){ clearTimeout(t); }
     var lg=document.querySelector('.topbar .tb-logo'); if(lg){ ['touchstart','mousedown'].forEach(function(ev){ lg.addEventListener(ev,start,{passive:true}); }); ['touchend','touchcancel','mouseup','mouseleave'].forEach(function(ev){ lg.addEventListener(ev,stop); }); lg.addEventListener('contextmenu', function(e){ e.preventDefault(); }); }
     document.getElementById('staffCancel').addEventListener('click', function(){ st.classList.remove('on'); });
-    document.getElementById('staffReset').addEventListener('click', function(){ var pin=document.getElementById('staffPin'); if(pin.value!==STAFF_PIN){ pin.value=''; pin.placeholder='PIN이 틀렸어요'; pin.style.borderColor='var(--red)'; return; } pin.value=''; st.classList.remove('on'); hardRestart(); });
+    document.getElementById('staffReset').addEventListener('click', function(){ var pin=document.getElementById('staffPin'); if(pin.value!==STAFF_PIN){ pin.value=''; pin.placeholder='PIN이 틀렸어요'; pin.style.borderColor='var(--red)'; return; } pin.value=''; st.classList.remove('on'); if(STAFF_MODE==='edit') editAnswers(); else hardRestart(); });
   })();
   // URL 해시: #r=<바코드16>.<굿즈idx> (POS 영수증 QR) / #reset=<토큰> (스태프 재참여 허용 QR)
   var HASH_HANDLED=false;
@@ -886,7 +907,7 @@ var ICONS = ["data:image/webp;base64,UklGRjQFAABXRUJQVlA4ICgFAABQIACdASqAAIAAPpE
     if((m=/^r=(\d{16})(?:\.(\d{0,4}))?$/.exec(h))){ var c=custFromCode(m[1]); if(!c){ toast('영수증 정보를 읽을 수 없습니다'); return; }
       var gs=[]; var gd=m[2]||''; for(var i=0;i+2<=gd.length;i+=2){ var gi=parseInt(gd.substr(i,2),10); if(gi>=0&&gi<GOODS.length) gs.push(gi); }
       HASH_HANDLED=true; savePaid(m[1], gs);
-      var r=loadIssued(); if(r && r.checks){ checks=r.checks; profile=r.profile||profile; result.nonce=r.nonce; computeResult(); }
+      var r=loadIssued(); if(r && r.checks){ checks=r.checks; profile=r.profile||profile; result.nonce=r.nonce; computeResult(); saveIssued(); }
       go(10); try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} }
   })();
   window.addEventListener('hashchange', function(){ if(/^#(r=|reset=)/.test(location.hash)) location.reload(); });
@@ -896,7 +917,7 @@ var ICONS = ["data:image/webp;base64,UklGRjQFAABXRUJQVlA4ICgFAABQIACdASqAAIAAPpE
     if(HASH_HANDLED) return;
     var r=loadIssued(); if(!r) return;
     try{
-      checks=r.checks||{}; profile=r.profile||profile; result.nonce=r.nonce;
+      checks=r.checks||{}; profile=r.profile||profile; result.nonce=r.nonce; if(!/^\d{4}$/.test(String(r.nonce||''))){ result.nonce=null; }
       computeResult(); go(loadPaid()?10:9);
       document.getElementById('restoredNote').classList.add('on');
     }catch(e){ clearIssued(); }
