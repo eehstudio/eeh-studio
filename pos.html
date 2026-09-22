@@ -37,6 +37,8 @@
   .g .p20{color:var(--red);font-weight:700}
   .g .im{position:relative;aspect-ratio:1/1;background:#F4F4F2;overflow:hidden;margin-bottom:8px}
   .g .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;padding:8px;display:block}
+  .g .im .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:38px;line-height:1}
+  .g .im .ph em{font-style:normal;font-family:var(--title);font-weight:500;font-size:8.5px;letter-spacing:.12em;color:var(--ink-4)}
   .g .cat{font-family:var(--title);font-weight:500;font-size:7.5px;letter-spacing:.14em;color:var(--ink-3)}
   .g .kw{font-family:var(--title);font-weight:500;font-size:14px;letter-spacing:.02em;margin-top:4px;color:var(--ink)}
   .g .nm{font-size:12.5px;color:var(--ink-2);margin-top:3px}
@@ -371,7 +373,10 @@
     {c:'CARE',k:'WARMTH',n:'군고구마 펜던트',q:'병원 동행·돌봄'},{c:'CARE',k:'HELP',n:'생강 키링',q:'어르신 돕기 / 스마트폰 안내'},{c:'CARE',k:'SWEET',n:'딸기 동전지갑',q:'아이 돌봄·육아'},{c:'CARE',k:'LIFE',n:'토마토 카드 홀더',q:'헌혈'},
     {c:'SHARING',k:'TREAT',n:'토스트 동전지갑',q:'음료·식사 미리 결제'},{c:'SHARING',k:'CIRCLE',n:'당근 동전지갑',q:'중고거래로 다시 쓰기'},{c:'SHARING',k:'GIVE',n:'버터 스틱 말랑이',q:'기부 / 재능·지식 나눔'},{c:'SHARING',k:'HANDS',n:'마늘 키링',q:'봉사활동'},
     {c:'COMMUNITY',k:'LOCAL',n:'노란 감자 동전지갑',q:'전통시장 / 지역화폐'},{c:'COMMUNITY',k:'FAIR',n:'가지 동전지갑',q:'사회적기업·협동조합'},{c:'COMMUNITY',k:'TOGETHER',n:'찹쌀 경단 동전지갑',q:'동네 청소·마을 가꾸기'},{c:'COMMUNITY',k:'VOICE',n:'고추 키링',q:'지역 설문·공청회'},
-    {c:'CSES',k:'UMBRELLA',n:'CSES 우산',q:'사회적가치연구원 공식 굿즈',p:20000}
+    {c:'CSES',k:'UMBRELLA',n:'CSES 우산',q:'사회적가치연구원 공식 굿즈',p:20000},
+    {c:'EXTRA',k:'CAT 1',n:'고양이 모형 1',q:'현장 추가 굿즈',e:'\uD83D\uDC31'},
+    {c:'EXTRA',k:'CAT 2',n:'고양이 모형 2',q:'현장 추가 굿즈',e:'\uD83D\uDC08'},
+    {c:'EXTRA',k:'CAPYBARA',n:'카피바라 말랑이',q:'현장 추가 굿즈',e:'\uD83E\uDDAB'}
   ];
   GOODS.forEach(function(g){ if(!g.p) g.p=10000; });
   function gPrice(i){ var g=GOODS[i]; return g?(g.p||10000):10000; }
@@ -2775,7 +2780,7 @@ var qrcode = function() {
       var im=GIMG[g.n], q=qtyOf(i);
       return '<div class="g'+(q?' on':'')+(g.p>10000?' big':'')+'" data-i="'+i+'">'
         +'<button class="minus" type="button" data-minus="'+i+'">−</button><span class="qty">'+q+'</span>'
-        +'<div class="im">'+(im?'<img alt="'+g.n+'" src="'+im+'">':'')+'</div>'
+        +'<div class="im">'+(im?'<img alt="'+g.n+'" src="'+im+'">':'<span class="ph">'+(g.e||'')+'<em>사진 준비중</em></span>')+'</div>'
         +'<div class="cat">'+g.c+'</div><div class="kw">'+g.k+'</div><div class="nm">'+g.n+'</div>'
         +'<div class="pr'+(g.p>10000?' p20':'')+'">'+fmt(g.p)+' VALUE</div>'
         +'<button class="so" type="button" data-sold="'+i+'">품절</button></div>';
@@ -2803,7 +2808,7 @@ var qrcode = function() {
     var sold=loadSold(), host=document.getElementById('soBody');
     host.innerHTML=GOODS.map(function(g,i){
       var out=!!sold[g.n], im=GIMG[g.n];
-      return '<div class="so-row'+(out?' out':'')+'">'+(im?'<img src="'+im+'" alt="">':'<span style="width:38px"></span>')
+      return '<div class="so-row'+(out?' out':'')+'">'+(im?'<img src="'+im+'" alt="">':'<span style="width:38px;text-align:center;font-size:22px">'+(g.e||'')+'</span>')
         +'<span class="nm">'+g.n+'<small>'+g.k+' · '+fmt(g.p)+' VALUE</small></span>'
         +'<button class="btn'+(out?'':' red')+'" type="button" data-so="'+i+'">'+(out?'판매 재개':'품절')+'</button></div>';
     }).join('');
