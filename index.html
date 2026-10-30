@@ -1227,6 +1227,7 @@ body.showall .page:first-of-type{border-top:none}
     transition:transform .25s cubic-bezier(.2,.8,.2,1);z-index:220;box-shadow:24px 0 60px -20px rgba(0,0,0,.35)}
   body.navopen .side{transform:none}
   body.navopen:after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:210}
+  body.navopen .app{z-index:auto} /* .app의 z-index:1이 서랍을 오버레이 아래에 가두지 않도록 */
   .hamb{display:block}
   .topbar{padding:11px 20px}
   .pane{padding:0 20px 40px}
